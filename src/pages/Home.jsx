@@ -31,7 +31,7 @@ export default function Home() {
           }`}
         >
           <div className="flex justify-between items-center p-4 max-w-[1400px] mx-auto">
-            <h1 className="font-bold text-red text-3xl">ARVOME</h1>
+            <h1 className="font-bold text-red text-3xl">CURECAB</h1>
 
             <a
               href="#about"

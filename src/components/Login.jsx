@@ -2,7 +2,7 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { MdCancel } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { toggleLoginModal } from "../redux/features/ModalSlice";
 
 function Login() {
@@ -17,7 +17,8 @@ function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!upi || !password) return toast.error("UPI and password required!");
+    // if (!upi || !password) return toast.error("UPI and password required!");
+    dispatch(toggleLoginModal());
     return navigate("/welcome");
   };
 
