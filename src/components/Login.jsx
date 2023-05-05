@@ -19,6 +19,7 @@ function Login() {
     e.preventDefault();
     // if (!upi || !password) return toast.error("UPI and password required!");
     dispatch(toggleLoginModal());
+    toast.success("You are now logged in!");
     return navigate("/welcome");
   };
 
