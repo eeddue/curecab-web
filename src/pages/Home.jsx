@@ -83,17 +83,27 @@ export default function Home() {
         {/* about */}
         <section id="about" className="px-5 py-[70px]">
           <h2 className="text-3xl font-bold text-center"> ~ About us ~</h2>
-          <div className="mx-auto max-w-[700px]">
-            <p className="mt-10 text-lg text-lblack">
-              Our website delivers affordable and reliable ARV pills to patients
-              in need, regardless of their location or financial situation. Our
-              dedicated team is passionate about improving healthcare outcomes,
-              sourcing the highest quality medication and delivering it
-              efficiently. We prioritize transparency, honesty and excellent
-              customer service, and we're always available to help with any
-              questions or concerns. Thank you for choosing us as your provider
-              of life-saving medication.
-            </p>
+          <div className="mx-auto max-w-[1200px] flex md:flex-row flex-col gap-3 my-6">
+            <div className="flex-1">
+              <p className="mt-10 text-lg text-lblack text-center">
+                Our website delivers affordable and reliable ARV pills to
+                patients in need, regardless of their location or financial
+                situation. Our dedicated team is passionate about improving
+                healthcare outcomes, sourcing the highest quality medication and
+                delivering it efficiently. We prioritize transparency, honesty
+                and excellent customer service, and we're always available to
+                help with any questions or concerns. Thank you for choosing us
+                as your provider of life-saving medication.
+              </p>
+            </div>
+
+            <div className="flex-1 flex justify-center items-center mt-5">
+              <img
+                src="route.gif"
+                alt=""
+                className="h-full w-full max-h-[300px] max-w-[300px] object-cover"
+              />
+            </div>
           </div>
         </section>
 
