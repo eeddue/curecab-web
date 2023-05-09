@@ -12,28 +12,30 @@ function Orders() {
   return (
     <section className="max-w-[700px] mx-auto p-5">
       <h1 className="text-xl">Order history</h1>
-      <table className="w-full border-collapse mt-3">
-        <thead>
-          <tr className="w-full">
-            <th>Date</th>
-            <th>order ID</th>
-            <th>Delivery fee</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          {orders.map((order, i) => (
-            <tr key={i} className="h-[45px] text-lblack">
-              <td className="">21/12/2022</td>
-              <td className="">277834043</td>
-              <td className="text-black">Ksh 230</td>
-              <td className="">
-                <span className={getStyles(i)}>Delivered</span>
-              </td>
+      <section className="overflow-x-scroll scroll scroll-smooth nobar ">
+        <table className="w-full border-collapse mt-3 w-full min-w-[600px]">
+          <thead className="bg-[#C8F7DF]">
+            <tr className="w-full">
+              <th>Date</th>
+              <th>order ID</th>
+              <th>Delivery fee</th>
+              <th>Status</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {orders.map((order, i) => (
+              <tr key={i} className="h-[45px] text-lblack">
+                <td className="">21/12/2022</td>
+                <td className="">277834043</td>
+                <td className="text-black">Ksh 230</td>
+                <td className="">
+                  <span className={getStyles(i)}>Delivered</span>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </section>
     </section>
   );
 }

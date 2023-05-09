@@ -9,7 +9,6 @@ import { toggleOrderModal } from "../redux/features/ModalSlice";
 function OrderForm() {
   const [county, setCounty] = useState("");
   const [constituency, setConstituency] = useState("");
-  const [ward, setWard] = useState("");
   const [clinic, setClinic] = useState("");
   const [courier, setCourier] = useState("");
   const [address, setAddress] = useState("");
@@ -60,7 +59,7 @@ function OrderForm() {
 
   return (
     <div>
-      <form className="bg-white p-3 rounded-md w-full max-w-[500px] pt-0 py-6">
+      <form className="bg-white rounded-md w-full max-w-[600px] pt-0 p-6">
         <div className="relative sticky top-0 bg-white pt-6 pb-1  z-10 w-full">
           <MdCancel
             onClick={handleClose}
@@ -88,7 +87,7 @@ function OrderForm() {
         {county && (
           <div className="w-full mb-3 flex flex-col">
             <label htmlFor="" className="text-[18px]">
-              Constituency
+              Sub-county
             </label>
             <select
               onChange={(e) => setConstituency(e.target.value)}
@@ -106,25 +105,7 @@ function OrderForm() {
         {county && constituency && (
           <div className="w-full mb-3 flex flex-col">
             <label htmlFor="" className="text-[18px]">
-              Ward
-            </label>
-            <select
-              onChange={(e) => setWard(e.target.value)}
-              className="w-full bg-input p-3 rounded-sm mt-2 outline-none text-lblack"
-            >
-              <option value="">- Select -</option>
-              <option value="one">Ward 1</option>
-              <option value="one">Ward 2</option>
-              <option value="one">Ward 3</option>
-              <option value="one">Ward 4</option>
-            </select>
-          </div>
-        )}
-
-        {county && constituency && ward && (
-          <div className="w-full mb-3 flex flex-col">
-            <label htmlFor="" className="text-[18px]">
-              Clinic
+              Facility
             </label>
             <select
               onChange={(e) => setClinic(e.target.value)}
@@ -139,7 +120,7 @@ function OrderForm() {
           </div>
         )}
 
-        {county && constituency && ward && clinic && (
+        {county && constituency && clinic && (
           <div className="w-full mb-3 flex flex-col">
             <label htmlFor="" className="text-[18px]">
               Preffered Courier

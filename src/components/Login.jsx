@@ -24,8 +24,8 @@ function Login() {
   };
 
   return (
-    <div>
-      <form className="bg-white p-3 rounded-md w-full max-w-[500px] py-6">
+    <div className="w-full">
+      <form className="bg-white rounded-md w-full max-w-[600px] p-6">
         <div className="relative">
           <MdCancel
             onClick={handleClose}
@@ -36,28 +36,28 @@ function Login() {
 
         <div className="w-full mb-3">
           <label htmlFor="" className="text-[18px]">
-            Unique Patient identifier (UPI)
+            Phone number
           </label>
           <input
             value={upi}
             onChange={(e) => setUpi(e.target.value.trim())}
-            type="text"
-            placeholder="Your UPI"
+            type="number"
+            placeholder="+2540123456789"
             className="w-full bg-input p-4 rounded-sm mt-2 outline-none text-lblack"
           />
         </div>
 
         <div className="w-full mb-3">
           <label className="text-[18px]" htmlFor="">
-            Password
+            Verify code
           </label>
           <input
             value={password}
             onChange={(e) => setPassword(e.target.value.trim())}
             minLength={6}
             maxLength={16}
-            type="password"
-            placeholder="password"
+            type="number"
+            placeholder="123456"
             className="w-full bg-input p-4 rounded-sm  mt-2
             outline-none text-lblack"
           />

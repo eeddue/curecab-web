@@ -22,6 +22,15 @@ function Index() {
     dispatch(toggleOrderModal());
   };
 
+  const Greetings = () => {
+    let today = new Date();
+    let hourNow = today.getHours();
+
+    if (hourNow >= 0 && hourNow < 12) return "Good morning";
+    if (hourNow >= 12 && hourNow < 18) return "Good afternoon";
+    return "Good evening";
+  };
+
   return (
     <div className="">
       <header
@@ -47,7 +56,7 @@ function Index() {
 
       <section className="max-w-[700px] mx-auto p-5">
         <h1 className="font-bold text-3xl text-lblack mb-2">
-          Welcome, <br />
+          {Greetings()}, <br />
           <span className="text-black text-4xl">John Doe</span>
         </h1>
         <h2 className="text-lblack text-lg mb-4">
