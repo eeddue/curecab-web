@@ -108,7 +108,7 @@ export default function Home() {
         <section className="bg-[#F1F5FD] py-[100px] px-5">
           <div className="max-w-[1300px] mx-auto">
             <h1 className="text-center text-4xl font-bold">~ Services ~</h1>
-            <div className="grid md:grid-cols-2 sm:grid-cols-1 gap-3 mt-10">
+            <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-3 mt-10">
               <div className="bg-white sm:max-w-[500px] mx-auto p-3 rounded py-[50px] text-center shadow-xl">
                 <BsCheckCircleFill className="text-3xl mx-auto mb-5 text-red" />
                 <h1 className="font-bold text-xl mb-4">Delivery Service</h1>
