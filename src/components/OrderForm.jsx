@@ -58,122 +58,120 @@ function OrderForm() {
   };
 
   return (
-    <div>
-      <form className="bg-white rounded-md w-full max-w-[600px] pt-0 p-6">
-        <div className="relative sticky top-0 bg-white pt-6 pb-1  z-10 w-full">
-          <MdCancel
-            onClick={handleClose}
-            className="text-4xl absolute right-0 text-lblack"
-          />
-          <p className="text-3xl mb-5 text-center">Make order</p>
-        </div>
+    <form className="bg-white rounded-md w-full max-w-[600px] pt-0 p-5">
+      <div className="relative sticky top-0 bg-white pt-6 pb-1  z-10 w-full border-b-[1px] border-bcolor mb-3">
+        <MdCancel
+          onClick={handleClose}
+          className="text-3xl absolute right-0 text-lblack"
+        />
+        <p className="md:text-3xl text-xl pb-2 text-center">Make order</p>
+      </div>
 
-        <div className="w-full mb-3 flex flex-col w-full">
+      <div className="w-full mb-3 flex flex-col w-full">
+        <label htmlFor="" className="text-[18px]">
+          County
+        </label>
+        <select
+          onChange={(e) => setCounty(e.target.value)}
+          className="w-full bg-input p-3 rounded-sm mt-2 outline-none text-lblack"
+        >
+          <option value="">- Select -</option>
+          <option value="one">County 1</option>
+          <option value="one">County 2</option>
+          <option value="one">County 3</option>
+          <option value="one">County 4</option>
+        </select>
+      </div>
+
+      {county && (
+        <div className="w-full mb-3 flex flex-col">
           <label htmlFor="" className="text-[18px]">
-            County
+            Sub-county
           </label>
           <select
-            onChange={(e) => setCounty(e.target.value)}
+            onChange={(e) => setConstituency(e.target.value)}
             className="w-full bg-input p-3 rounded-sm mt-2 outline-none text-lblack"
           >
             <option value="">- Select -</option>
-            <option value="one">County 1</option>
-            <option value="one">County 2</option>
-            <option value="one">County 3</option>
-            <option value="one">County 4</option>
+            <option value="one">Constituency 1</option>
+            <option value="one">Constituency 2</option>
+            <option value="one">Constituency 3</option>
+            <option value="one">Constituency 4</option>
           </select>
         </div>
+      )}
 
-        {county && (
-          <div className="w-full mb-3 flex flex-col">
-            <label htmlFor="" className="text-[18px]">
-              Sub-county
-            </label>
-            <select
-              onChange={(e) => setConstituency(e.target.value)}
-              className="w-full bg-input p-3 rounded-sm mt-2 outline-none text-lblack"
-            >
-              <option value="">- Select -</option>
-              <option value="one">Constituency 1</option>
-              <option value="one">Constituency 2</option>
-              <option value="one">Constituency 3</option>
-              <option value="one">Constituency 4</option>
-            </select>
-          </div>
-        )}
-
-        {county && constituency && (
-          <div className="w-full mb-3 flex flex-col">
-            <label htmlFor="" className="text-[18px]">
-              Facility
-            </label>
-            <select
-              onChange={(e) => setClinic(e.target.value)}
-              className="w-full bg-input p-3 rounded-sm mt-2 outline-none text-lblack"
-            >
-              <option value="">- Select -</option>
-              <option value="one">Clinic 1</option>
-              <option value="one">Clinic 2</option>
-              <option value="one">Clinic 3</option>
-              <option value="one">Clinic 4</option>
-            </select>
-          </div>
-        )}
-
-        {county && constituency && clinic && (
-          <div className="w-full mb-3 flex flex-col">
-            <label htmlFor="" className="text-[18px]">
-              Preffered Courier
-            </label>
-            <select
-              onChange={(e) => setCourier(e.target.value)}
-              className="w-full bg-input p-3 rounded-sm mt-2 outline-none text-lblack"
-            >
-              <option value="">- Select -</option>
-              {couriers.map((courier) => (
-                <option key={courier} value={courier}>
-                  {courier}
-                </option>
-              ))}
-            </select>
-          </div>
-        )}
-
-        <div className="w-full mb-3">
-          <label className="text-[18px]" htmlFor="">
-            Delivery address
+      {county && constituency && (
+        <div className="w-full mb-3 flex flex-col">
+          <label htmlFor="" className="text-[18px]">
+            Facility
           </label>
-          <input
-            value={address}
-            onChange={(e) => setAddress(e.target.value)}
-            type="text"
-            placeholder="112345 example"
-            className="w-full bg-input p-4 rounded-sm  mt-2
-            outline-none text-lblack"
-          />
+          <select
+            onChange={(e) => setClinic(e.target.value)}
+            className="w-full bg-input p-3 rounded-sm mt-2 outline-none text-lblack"
+          >
+            <option value="">- Select -</option>
+            <option value="one">Clinic 1</option>
+            <option value="one">Clinic 2</option>
+            <option value="one">Clinic 3</option>
+            <option value="one">Clinic 4</option>
+          </select>
         </div>
+      )}
 
-        <div className="w-full mb-3">
-          <label className="text-[18px]" htmlFor="">
-            Delivery by
+      {county && constituency && clinic && (
+        <div className="w-full mb-3 flex flex-col">
+          <label htmlFor="" className="text-[18px]">
+            Preffered Courier
           </label>
-          <input
-            value={deliveryDate}
-            onChange={(e) => setdDeliveryDate(e.target.value)}
-            type="date"
-            className="w-full bg-input p-4 rounded-sm  mt-2
-            outline-none text-lblack"
-          />
+          <select
+            onChange={(e) => setCourier(e.target.value)}
+            className="w-full bg-input p-3 rounded-sm mt-2 outline-none text-lblack"
+          >
+            <option value="">- Select -</option>
+            {couriers.map((courier) => (
+              <option key={courier} value={courier}>
+                {courier}
+              </option>
+            ))}
+          </select>
         </div>
+      )}
 
-        <button
-          onClick={handleSubmit}
-          className="w-full bg-red py-3 text-white text-bold text-xl hover:opacity-[.8] rounded-md mt-5"
-        >
-          Continue
-        </button>
-      </form>
-    </div>
+      <div className="w-full mb-3">
+        <label className="text-[18px]" htmlFor="">
+          Delivery address
+        </label>
+        <input
+          value={address}
+          onChange={(e) => setAddress(e.target.value)}
+          type="text"
+          placeholder="112345 example"
+          className="w-full bg-input p-4 rounded-sm  mt-2
+            outline-none text-lblack"
+        />
+      </div>
+
+      <div className="w-full mb-3">
+        <label className="text-[18px]" htmlFor="">
+          Delivery by
+        </label>
+        <input
+          value={deliveryDate}
+          onChange={(e) => setdDeliveryDate(e.target.value)}
+          type="date"
+          className="w-full bg-input p-4 rounded-sm  mt-2
+            outline-none text-lblack"
+        />
+      </div>
+
+      <button
+        onClick={handleSubmit}
+        className="w-full bg-red py-3 text-white text-bold text-xl hover:opacity-[.8] rounded-md mt-5"
+      >
+        Continue
+      </button>
+    </form>
   );
 }
 
