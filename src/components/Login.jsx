@@ -30,7 +30,7 @@ function Login() {
           onClick={handleClose}
           className="text-4xl absolute right-0 text-lblack"
         />
-        <p className="text-3xl text-center">Login</p>
+        <p className="font-bold text-2xl md:text-3xl text-center">Login</p>
       </div>
 
       <div className="w-full mb-3">
@@ -42,7 +42,7 @@ function Login() {
           onChange={(e) => setUpi(e.target.value.trim())}
           type="number"
           placeholder="+2540123456789"
-          className="w-full bg-input p-4 rounded-sm mt-2 outline-none text-lblack"
+          className="w-full bg-input p-3 lg:p-4 rounded-sm mt-2 outline-none text-lblack"
         />
       </div>
 
@@ -57,7 +57,7 @@ function Login() {
           maxLength={16}
           type="number"
           placeholder="123456"
-          className="w-full bg-input p-4 rounded-sm  mt-2
+          className="w-full bg-input p-3 lg:p-4 rounded-sm mt-2
             outline-none text-lblack"
         />
       </div>

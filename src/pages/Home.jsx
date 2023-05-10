@@ -74,11 +74,11 @@ export default function Home() {
               </a>
             </section>
           </div>
-          <div className="w-full h-full mx-auto flex items-center justify-center mb-10 p-5">
+          <div className="w-full h-full mx-auto flex items-center justify-center p-5">
             <div className="max-w-[350px] w-full mx-auto relative rounded-xl">
               <img
                 src="/medicines.png"
-                className="sm:max-w-[250px] mx-auto lg:max-w-[350px] w-full h-full"
+                className="max-w-[200px] mx-auto lg:max-w-[350px] w-full h-full"
                 alt="hello"
               />
             </div>
@@ -86,7 +86,7 @@ export default function Home() {
         </section>
 
         {/* about */}
-        <section id="about" className="px-5 py-[50px] mt-10">
+        <section id="about" className="px-5 py-[50px]">
           <h2 className="text-3xl font-bold text-center"> ~ About us ~</h2>
           <div className="mx-auto max-w-[1200px] flex lg:flex-row flex-col gap-3 my-6">
             <div className="flex-1">
@@ -102,7 +102,7 @@ export default function Home() {
               <img
                 src="route.gif"
                 alt=""
-                className="h-full w-full max-h-[300px] sm:max-h-[200px] sm:max-w-[200px] max-w-[300px] object-cover"
+                className="h-full w-full max-h-[200px] max-w-[200px] lg:max-w-[300px] lg:max-h-[300px] object-cover"
               />
             </div>
           </div>

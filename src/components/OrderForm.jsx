@@ -58,8 +58,8 @@ function OrderForm() {
   };
 
   return (
-    <form className="bg-white rounded-md w-full max-w-[600px] pt-0 p-5">
-      <div className="relative sticky top-0 bg-white pt-6 pb-1  z-10 w-full border-b-[1px] border-bcolor mb-3">
+    <form className="bg-white rounded-md w-full max-w-[600px] p-5">
+      <div className="relative sticky top-0 bg-white pb-1  z-10 w-full border-b-[1px] border-bcolor mb-3">
         <MdCancel
           onClick={handleClose}
           className="text-3xl absolute right-0 text-lblack"
@@ -73,7 +73,7 @@ function OrderForm() {
         </label>
         <select
           onChange={(e) => setCounty(e.target.value)}
-          className="w-full bg-input p-3 rounded-sm mt-2 outline-none text-lblack"
+          className="w-full bg-input p-2 md:p-3 rounded-sm mt-1 outline-none text-lblack"
         >
           <option value="">- Select -</option>
           <option value="one">County 1</option>
@@ -90,7 +90,7 @@ function OrderForm() {
           </label>
           <select
             onChange={(e) => setConstituency(e.target.value)}
-            className="w-full bg-input p-3 rounded-sm mt-2 outline-none text-lblack"
+            className="w-full bg-input p-2 md:p-3 rounded-sm mt-1 outline-none text-lblack"
           >
             <option value="">- Select -</option>
             <option value="one">Constituency 1</option>
@@ -108,7 +108,7 @@ function OrderForm() {
           </label>
           <select
             onChange={(e) => setClinic(e.target.value)}
-            className="w-full bg-input p-3 rounded-sm mt-2 outline-none text-lblack"
+            className="w-full bg-input p-2 md:p-3 rounded-sm mt-1 outline-none text-lblack"
           >
             <option value="">- Select -</option>
             <option value="one">Clinic 1</option>
@@ -126,7 +126,7 @@ function OrderForm() {
           </label>
           <select
             onChange={(e) => setCourier(e.target.value)}
-            className="w-full bg-input p-3 rounded-sm mt-2 outline-none text-lblack"
+            className="w-full bg-input p-2 md:p-3 rounded-sm mt-1 outline-none text-lblack"
           >
             <option value="">- Select -</option>
             {couriers.map((courier) => (
@@ -147,7 +147,7 @@ function OrderForm() {
           onChange={(e) => setAddress(e.target.value)}
           type="text"
           placeholder="112345 example"
-          className="w-full bg-input p-4 rounded-sm  mt-2
+          className="w-full bg-input p-2 md:p-3 rounded-sm mt-1
             outline-none text-lblack"
         />
       </div>
@@ -160,7 +160,7 @@ function OrderForm() {
           value={deliveryDate}
           onChange={(e) => setdDeliveryDate(e.target.value)}
           type="date"
-          className="w-full bg-input p-4 rounded-sm  mt-2
+          className="w-full bg-input p-2 md:p-3 rounded-sm  mt-1
             outline-none text-lblack"
         />
       </div>
