@@ -43,7 +43,7 @@ function Index() {
 
           <button
             onClick={() => navigate("/")}
-            className="w-[150px] h-[45px] border-solid border-[1px] border-bcolor rounded hover:border-red text-lblack text-lg"
+            className="md:w-[150px] w-[100px] h-[45px] border-solid border-[1px] border-bcolor rounded hover:border-red text-lblack md:text-lg"
           >
             Log out
           </button>
@@ -55,11 +55,11 @@ function Index() {
       </Dialog>
 
       <section className="max-w-[700px] mx-auto p-5">
-        <h1 className="font-bold text-3xl text-lblack mb-2">
+        <h1 className="font-bold md:text-3xl text-xl text-lblack mb-2">
           {Greetings()}, <br />
-          <span className="text-black text-4xl">John Doe</span>
+          <span className="text-black md:text-4xl text-2xl">John Doe</span>
         </h1>
-        <h2 className="text-lblack text-lg mb-4">
+        <h2 className="text-lblack md:text-lg mb-4">
           You can now request a new order and we'll get it delivered to you.
         </h2>
         <button

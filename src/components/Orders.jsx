@@ -25,10 +25,10 @@ function Orders() {
           <tbody>
             {orders.map((order, i) => (
               <tr key={i} className="h-[45px] text-lblack">
-                <td className="">21/12/2022</td>
-                <td className="">277834043</td>
-                <td className="text-black">Ksh 230</td>
-                <td className="">
+                <td className="md:text-md text-[14px]">21/12/2022</td>
+                <td className="md:text-md text-[14px]">277834043</td>
+                <td className="text-black md:text-md text-[14px]">Ksh 230</td>
+                <td className="md:text-md text-[14px]">
                   <span className={getStyles(i)}>Delivered</span>
                 </td>
               </tr>

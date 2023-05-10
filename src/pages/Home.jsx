@@ -56,10 +56,10 @@ export default function Home() {
               Take the hassle out of getting your ARV medications and have them
               delivered to you quickly and easily.
             </h2>
-            <section className="flex md:flex-row sm:flex-col gap-3 max-w-[500px] mx-auto w-full mt-10">
+            <section className="grid md:grid-cols-2 sm:grid-cols-1 gap-3 max-w-[500px] mx-auto w-full mt-10">
               <button
                 onClick={handleToggle}
-                className="flex-1 bg-red text-white px-5 p-3 text-xl sm:text-md rounded-full hover:scale-[98%]"
+                className="w-full bg-red text-white px-5 p-3 md:text-xl text-md rounded-full hover:scale-[98%]"
               >
                 Order now
               </button>
@@ -68,7 +68,7 @@ export default function Home() {
                 href="https://nishauritest.kenyahmis.org/login"
                 rel="noreferrer"
                 target="_blank"
-                className="flex-1 bg-[#3F00FF] text-white px-5 p-3 text-xl sm:text-md rounded-full hover:scale-[98%]  text-center"
+                className="w-full bg-[#3F00FF] text-white px-5 p-3 md:text-xl text-md rounded-full hover:scale-[98%]  text-center"
               >
                 Book appointment
               </a>
@@ -76,7 +76,11 @@ export default function Home() {
           </div>
           <div className="w-full h-full mx-auto flex items-center justify-center mb-10 p-5">
             <div className="max-w-[350px] w-full mx-auto relative rounded-xl">
-              <img src="/medicines.png" className="w-full h-full" alt="hello" />
+              <img
+                src="/medicines.png"
+                className="sm:max-w-[250px] mx-auto lg:max-w-[350px] w-full h-full"
+                alt="hello"
+              />
             </div>
           </div>
         </section>
