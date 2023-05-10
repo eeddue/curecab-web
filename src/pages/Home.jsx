@@ -49,17 +49,17 @@ export default function Home() {
         {/* section1 */}
         <section className="relative grid gap-[50px] lg:grid-cols-2 sm:grid-cols-1 max-w-[1300px] mx-auto p-5 h-screen ">
           <div className="w-full h-full flex flex-col justify-center md:mx-4 sm:mx-4 ">
-            <h1 className="text-6xl mb-5 font-bold text-center">
+            <h1 className="md:text-6xl mb-5 text-3xl font-bold text-center">
               Usi-<span className="text-red">tense</span>!
             </h1>
-            <h2 className="text-2xl text-lblack sm:text-center max-w-[600px] mx-auto">
+            <h2 className="md:text-2xl sm:text-lg text-lblack sm:text-center max-w-[600px] mx-auto">
               Take the hassle out of getting your ARV medications and have them
               delivered to you quickly and easily.
             </h2>
-            <section className="grid grid-cols-2 gap-3 max-w-[500px] mx-auto w-full">
+            <section className="flex md:flex-row sm:flex-col gap-3 max-w-[500px] mx-auto w-full mt-10">
               <button
                 onClick={handleToggle}
-                className="w-full bg-red text-white px-5 sm:py-4  p-3 text-xl rounded-full hover:scale-[98%] w-full  max-w-[400px]  mt-10 sm:mx-auto"
+                className="flex-1 bg-red text-white px-5 p-3 text-xl sm:text-md rounded-full hover:scale-[98%]"
               >
                 Order now
               </button>
@@ -68,21 +68,21 @@ export default function Home() {
                 href="https://nishauritest.kenyahmis.org/login"
                 rel="noreferrer"
                 target="_blank"
-                className="bg-[#3F00FF] text-white px-5 p-3 sm:py-4 text-xl rounded-full hover:scale-[98%] w-full  max-w-[400px] mt-10 sm:mx-auto text-center"
+                className="flex-1 bg-[#3F00FF] text-white px-5 p-3 text-xl sm:text-md rounded-full hover:scale-[98%]  text-center"
               >
                 Book appointment
               </a>
             </section>
           </div>
-          <div className="w-full h-full mx-auto flex items-center justify-center mb-10">
-            <div className="max-w-[350px] sm:w-[300px] w-full mx-auto relative rounded-xl">
-              <img src="/medicines.png" width={600} height={600} alt="hello" />
+          <div className="w-full h-full mx-auto flex items-center justify-center mb-10 p-5">
+            <div className="max-w-[350px] w-full mx-auto relative rounded-xl">
+              <img src="/medicines.png" className="w-full h-full" alt="hello" />
             </div>
           </div>
         </section>
 
         {/* about */}
-        <section id="about" className="px-5 py-[70px]">
+        <section id="about" className="px-5 py-[50px] mt-10">
           <h2 className="text-3xl font-bold text-center"> ~ About us ~</h2>
           <div className="mx-auto max-w-[1200px] flex lg:flex-row flex-col gap-3 my-6">
             <div className="flex-1">
@@ -94,11 +94,11 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="flex-1 flex justify-center items-center mt-5">
+            <div className="flex-1 flex justify-center items-center mt-5 px-5">
               <img
                 src="route.gif"
                 alt=""
-                className="h-full w-full max-h-[300px] max-w-[300px] object-cover"
+                className="h-full w-full max-h-[300px] sm:max-h-[200px] sm:max-w-[200px] max-w-[300px] object-cover"
               />
             </div>
           </div>
@@ -112,7 +112,7 @@ export default function Home() {
               <div className="bg-white sm:max-w-[500px] mx-auto p-3 rounded py-[50px] text-center shadow-xl">
                 <BsCheckCircleFill className="text-3xl mx-auto mb-5 text-red" />
                 <h1 className="font-bold text-xl mb-4">Delivery Service</h1>
-                <p className="mb-4 text-lblack text-lg">
+                <p className="mb-4 text-lblack md:text-lg sm:text-md">
                   We provide a delivery service for ARV drugs, allowing patients
                   to order their drugs at the comfort of their homes.
                 </p>
@@ -120,7 +120,7 @@ export default function Home() {
               <div className="bg-white sm:max-w-[500px] mx-auto p-3 rounded py-[50px] text-center shadow-xl">
                 <BsCheckCircleFill className="text-3xl mx-auto mb-5 text-red" />
                 <h1 className="font-bold text-xl mb-4">Pay on delivery</h1>
-                <p className="mb-4 text-lblack text-lg">
+                <p className="mb-4 text-lblack md:text-lg sm:text-md">
                   We provide pay on delivery option for patients to pay for the
                   delivery fee of their ARV drugs after getting them.
                 </p>
@@ -128,7 +128,7 @@ export default function Home() {
               <div className="bg-white sm:max-w-[500px] mx-auto p-3 rounded py-[50px] text-center shadow-xl">
                 <BsCheckCircleFill className="text-3xl mx-auto mb-5 text-red" />
                 <h1 className="font-bold text-xl mb-4">Prescription Refill</h1>
-                <p className="mb-4 text-lblack text-lg">
+                <p className="mb-4 text-lblack md:text-lg sm:text-md">
                   We offer prescription refill services to ensure that patients
                   get their ARV drugs on time.
                 </p>
@@ -138,7 +138,7 @@ export default function Home() {
         </section>
 
         {/* section3 */}
-        <section className="">
+        <section>
           <div className="max-w-[1300px] mx-auto p-5 py-[100px]">
             <h2 className="text-center text-3xl font-bold">
               ~ Why Choose us ~
@@ -149,7 +149,7 @@ export default function Home() {
                 <BsCheckCircleFill className="text-5xl mx-auto mb-5 text-red" />
                 <div>
                   <p className="text-xl font-bold mt-3">Confidentiality</p>
-                  <p className="text-lg text-lblack">
+                  <p className="md:text-lg sm:text-md text-lblack">
                     Patients data is well handled throughout the delivery
                     process without outsiders getting involved.
                   </p>
@@ -159,7 +159,7 @@ export default function Home() {
                 <BsCheckCircleFill className="text-5xl mx-auto mb-5 text-red" />
                 <div>
                   <p className="text-xl font-bold mt-3">Convenience</p>
-                  <p className="text-lg text-lblack">
+                  <p className="md:text-lg sm:text-md text-lblack">
                     Patients can order their drugs from the comfort of their
                     homes, without having to visit the clinic.
                   </p>
@@ -169,7 +169,7 @@ export default function Home() {
                 <BsCheckCircleFill className="text-5xl mx-auto mb-5 text-red" />
                 <div>
                   <p className="text-xl font-bold mt-3">Ease of Access</p>
-                  <p className="text-lg text-lblack">
+                  <p className="md:text-lg sm:text-md text-lblack">
                     Patients can access our services through our websites,
                     mobile app and USSD.
                   </p>
@@ -179,7 +179,7 @@ export default function Home() {
                 <BsCheckCircleFill className="text-5xl mx-auto mb-5 text-red" />
                 <div>
                   <p className="text-xl font-bold mt-3">Fast delivery</p>
-                  <p className="text-lg text-lblack">
+                  <p className="md:text-lg sm:text-md text-lblack">
                     Patients can receive their drugs in a timely manner, without
                     having to wait in long queues at clinics.
                   </p>
