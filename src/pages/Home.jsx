@@ -49,7 +49,7 @@ export default function Home() {
         {/* section1 */}
         <section className="relative grid gap-[50px] lg:grid-cols-2 sm:grid-cols-1 max-w-[1300px] mx-auto p-5 h-screen ">
           <div className="w-full h-full flex flex-col justify-center md:mx-4 sm:mx-4 ">
-            <h1 className="md:text-6xl mb-5 text-3xl font-bold text-center">
+            <h1 className="md:text-6xl mb-5 text-4xl font-bold text-center">
               Usi-<span className="text-red">tense</span>!
             </h1>
             <h2 className="md:text-2xl sm:text-lg text-lblack sm:text-center max-w-[600px] mx-auto">
