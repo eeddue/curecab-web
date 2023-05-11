@@ -16,7 +16,7 @@ function Orders() {
     const fetchOrders = async () => {
       try {
         const { data } = await axios.get(
-          `http://localhost:5000/api/v1/orders/clients/${user.phone}`
+          `https://5ff6-102-212-236-168.ngrok-free.app/api/v1/orders/clients/${user.phone}`
         );
 
         dispatch(setOrders(data.orders));
@@ -27,7 +27,7 @@ function Orders() {
       }
     };
     fetchOrders();
-  }, [user.phone]);
+  }, [user.phone, dispatch]);
 
   const getStyles = (status) => {
     if (status === "approaving") return "bg-[#FCF4C7] text-[#854E23]";
