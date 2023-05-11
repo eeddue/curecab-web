@@ -1,25 +1,20 @@
 import Dialog from "@mui/material/Dialog";
 import OrderForm from "../components/OrderForm";
 import FeedBack from "../components/FeedBack";
-import { useNavigate } from "react-router-dom";
 import Orders from "../components/Orders";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleOrderModal } from "../redux/features/ModalSlice";
+import { signOut } from "../redux/features/AuthSlice";
 
 function Index() {
   const { orderOpen } = useSelector((store) => store.modals);
+  const { user } = useSelector((store) => store.auth);
   const dispatch = useDispatch();
 
   const all = {
     delivered: { bg: "#FCF4C7", color: "#854E23" },
     pending: { bg: "#C8F7DF", color: "#559982" },
     failed: { bg: "#F8EAE9", color: "#752E32" },
-  };
-
-  const navigate = useNavigate();
-
-  const handleOpen = () => {
-    dispatch(toggleOrderModal());
   };
 
   const Greetings = () => {
@@ -42,7 +37,7 @@ function Index() {
           <h1 className="font-bold text-red text-3xl">CURECAB</h1>
 
           <button
-            onClick={() => navigate("/")}
+            onClick={() => dispatch(signOut())}
             className="md:w-[150px] w-[100px] h-[45px] border-solid border-[1px] border-bcolor rounded hover:border-red text-lblack md:text-lg"
           >
             Log out
@@ -57,13 +52,13 @@ function Index() {
       <section className="max-w-[700px] mx-auto p-5">
         <h1 className="font-bold md:text-3xl text-xl text-lblack mb-2">
           {Greetings()}, <br />
-          <span className="text-black md:text-4xl text-2xl">John Doe</span>
+          <span className="text-black md:text-4xl text-2xl">{user?.name} </span>
         </h1>
         <h2 className="text-lblack md:text-lg mb-4">
           You can now request a new order and we'll get it delivered to you.
         </h2>
         <button
-          onClick={handleOpen}
+          onClick={() => dispatch(toggleOrderModal())}
           className="w-[200px] h-[50px] bg-red rounded-full text-white text-lg hover:scale-[98%]"
         >
           Make order
@@ -72,7 +67,7 @@ function Index() {
 
       <Orders />
 
-      <FeedBack />
+      {/* <FeedBack /> */}
     </div>
   );
 }

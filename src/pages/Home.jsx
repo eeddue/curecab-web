@@ -65,7 +65,7 @@ export default function Home() {
               </button>
 
               <a
-                href="https://nishauritest.kenyahmis.org/login"
+                href="https://play.google.com/store/apps/details?id=com.mhealth.ushauriv2"
                 rel="noreferrer"
                 target="_blank"
                 className="w-full bg-[#3F00FF] text-white px-5 p-3 md:text-xl text-md rounded-full hover:scale-[98%]  text-center"
