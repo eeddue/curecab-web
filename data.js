@@ -1,342 +1,117 @@
-export const counties = [
+export const generateOrderId = () => {
+  const min = 1000000000;
+  const max = 9999999999;
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+};
+
+export const facilities = [
+  { name: "Kenyatta National Hospital CCC (Nairobi)", phone: "+254715432912" },
   {
-    name: "Baringo",
-    subCounties: [
-      {
-        name: "Baringo Central",
-        facilities: [
-          "Baringo County Refferal Hospital",
-          "Tenges Health Centre",
-        ],
-      },
-      {
-        name: "Baringo North",
-        facilities: ["Kabartonjo Refferal Hospital", "Kipsaraman Dispensary"],
-      },
-      {
-        name: "Koibatek",
-        facilities: [
-          "Eldama Ravine District Hospital",
-          "Esageri Health Centre",
-          "Mercy Hospital",
-          "Tomboroa Health Centre",
-          "Torongo Health Centre",
-        ],
-      },
-      {
-        name: "Marigat",
-        facilities: ["Marigat Sub District Hospital"],
-      },
-      {
-        name: "Mogotio",
-        facilities: ["Emining Health Centre", "Kisanana Health Centre"],
-      },
-    ],
+    name: "Moi Teaching and Referral Hospital CCC (Eldoret)",
+    phone: "+254738960475",
   },
   {
-    name: "Nairobi",
-    subCounties: [
-      {
-        name: "Dagoretti North",
-        facilities: [
-          "Coptic Hospital (Ngong Road)",
-          "Liverpool VCT",
-          "Maria Immaculata Health Centre",
-          "Melchezedek Hospital",
-          "Nairobi Womens Hospital (Hurlingham)",
-          "Riruta Health Centre",
-          "Sokoni Arcade VCT",
-        ],
-      },
-      {
-        name: " Dagoretti South",
-        facilities: [
-          "Chandaria Health Centre",
-          "Kivuli Dispensary",
-          "Lea Toto Dagoretti",
-          "Lea Toto Kawangware",
-          "Maisha Noset Kawangware",
-          "Mutuini Sub-District Hospital",
-          "Sex Workers Oureach Program (Kibra)",
-          "St Joseph's Distpensary (Dagoretti)",
-          "Swop Kawangware",
-          "Waithaka Health Centre",
-        ],
-      },
-      {
-        name: "Embakasi Central",
-        facilities: [
-          "SWOP Donholm",
-          "Diwopa Health Centre",
-          "EDARP Komarock Health Centre",
-          "Gertrude Komarock Clinic",
-          "Kayole Health Centre",
-          "Kayole II Sub-District Hospital",
-        ],
-      },
-      {
-        name: "Embakasi East",
-        facilities: [
-          "APTC Health Center",
-          "EDARP Donholm Clinic",
-          "EDARP Soweto Health Centre",
-          "Embakasi Health Centre",
-          "GSUTraining School",
-          "Getrude Donholm Clinic",
-          "Getrude Embakasi Clinic",
-          "Soweto Kayole PHC Health Centre",
-          "St Barkita Dispensary Utawala",
-          "St Raphael's Clinic",
-        ],
-      },
-      {
-        name: "Embakasi North",
-        facilities: [
-          "Brother Andre Medial Centre",
-          "Comboni Missionary Sisters Health Program",
-          "Dandora I Health Centre",
-          "Dandora II Health Centre",
-          "Kariobangi EDARP",
-          "Kariobangi Health Centre",
-          "Lea Toto Kariobangi",
-          "Swop Korogocho",
-        ],
-      },
-      {
-        name: "Embakasi West",
-        facilities: [
-          "Dandora (EDARP) Clinic",
-          "Jerusalem Clinic",
-          "Kariobangi South Clinic",
-          "Lea Toto Dandora",
-          "Mama Lucy Kibaki Hospital - Embakasi",
-          "Umoja Health Centre",
-        ],
-      },
-      {
-        name: "Embakasi South",
-        facilities: [
-          "Kware Dispensary",
-          "Lea Toto Mukuru",
-          "Mukuru Health Centre",
-          "Mukuru Mmm Clinic",
-          "Reuben Mukuru Health Centre",
-        ],
-      },
-    ],
+    name: "Coast Provincial General Hospital CCC (Mombasa)",
+    phone: "+254786548203",
+  },
+  { name: "Kisumu County Hospital CCC (Kisumu)", phone: "+254723091758" },
+  {
+    name: "Nyanza Provincial General Hospital CCC (Kisumu)",
+    phone: "+254704829361",
   },
   {
-    name: "Kiambu",
-    subCounties: [
-      {
-        name: "Gatundu North",
-        facilities: [
-          "Cardinal Otunga Health Centre",
-          "Gachege dispensary",
-          "Gakoe Health Centre",
-          "Igegania Sub-District Hospital",
-          "Ngorongo Health Centre",
-        ],
-      },
-      {
-        name: "Gatundu South",
-        facilities: [
-          "Gatundu District Hospital",
-          "Gitare health centre",
-          "Karatu health centre",
-          "Ngenda health centre",
-        ],
-      },
-      {
-        name: "Githunguri",
-        facilities: [
-          "Beta Care Nursing Home",
-          "Githiga Health Centre",
-          "Githunguri health centre",
-          "Holy family catholic hospital githunguri",
-          "Kigumo Health Centre",
-          "Miguta Dispensary",
-          "Ngewa Health Centre",
-        ],
-      },
-      {
-        name: "Gachororo",
-        facilities: [
-          "Gachororo health centre",
-          "Hamundia health centre",
-          "Jkuat Hospital",
-          "Juja Farm health centre",
-          "Kalimoni Hospital",
-        ],
-      },
-      {
-        name: "Kabete",
-        facilities: ["Uthiru Dispensary", "Wangige Health Centre"],
-      },
-      {
-        name: "Kiambaa",
-        facilities: [
-          "Cianda Dispensary",
-          "Gathanga Health Centre",
-          "Karuri Health Centre",
-          "Kihara Sub-District Hospital",
-          "Lvct Ruaka Dice",
-          "Sacred Heart Dispensary",
-        ],
-      },
-      {
-        name: "Kiambu Town",
-        facilities: [
-          "Anmer Dispensary",
-          "GK Prisons Dispensary (Kiambu Town)",
-          "Kiambu District Hospital",
-          "Tinganga Catholic Dispensary",
-          "Tinganga Dispensary",
-        ],
-      },
-      { name: "Kikuyu", facilities: ["Kikuyu (PCEA) Hospital"] },
-      {
-        name: "Lari",
-        facilities: [
-          "Kagaa Dispensary",
-          "Kagwe Dispensary",
-          "Kijabe (AIC) Hospital",
-          "Kijabe (AIC) Hospital Marira Medical Clinic",
-          "Lari HEalth Centre",
-        ],
-      },
-      {
-        name: "Limuru",
-        facilities: [
-          "Holy Cross Dispensary",
-          "Limuru Health Centre",
-          "Nazareth Hospital",
-          "Ndeiya Health Centre",
-          "St Charles Lwanga Dispensary",
-          "Tigoni sub county hospital",
-        ],
-      },
-      {
-        name: "Ruiru",
-        facilities: [
-          "Githunguri health centre (Ruiru)",
-          "Langata Health centre (Ruiru)",
-          "Nazareth Hospital (Ruiru)",
-          "Ruiru Sub-County Hospital",
-          "St Joseph Catholic Dispensary (Ruiru)",
-        ],
-      },
-      {
-        name: "Thika Town",
-        facilities: [
-          "G K Prisons (Thika)",
-          "Immaculate Heart of Mary Hosp.",
-          "Kiandutu Health Centre",
-          "LVCT Health Thika",
-          "MPEG Dice",
-          "Makongeni dispensary",
-          "Mary Help of the Sick Hospital",
-          "Munyu Health Centre",
-          "Ngoliba health centre",
-          "St. Mulumba mission hospital",
-          "Thika level 5 Hospital",
-          "Thika Nursing Home",
-        ],
-      },
-    ],
-  },
-  {
-    name: "Mombasa",
-    subCounties: [
-      {
-        name: "Changamwe",
-        facilities: [
-          "Bokole CDF Dispensary",
-          "Bomu Medical Hospital",
-          "Chaani Catholic",
-          "Chaani Outreach Center",
-          "Magongo(MCM) Dispensary",
-          "Mombasa Roadside Wellness Center",
-          "Port Reitz Subcounty Hospital",
-          "St Hillarias Clinic",
-        ],
-      },
-      {
-        name: "Jomvu",
-        facilities: [
-          "Jomvu Model Health Center",
-          "Mikindani (MCM) Dispensary",
-          "Mikindani Catholic Dispensary",
-          "Mikindani Medical Clinic",
-          "Miritini CDF Dispensary",
-          "Roadside Wellness (Jomvu)",
-        ],
-      },
-      {
-        name: "Kisauni",
-        facilities: [
-          "Jocham Hospital",
-          "Kisauni Drop In VCT_ICRH",
-          "Shimo La Tewa Annex Dispensary (GK Prison)",
-          "Shimo La Tewa Health Center (GK Prison)",
-          "Wema Center Medical Clinic",
-        ],
-      },
-      {
-        name: "Likoni",
-        facilities: [
-          "Bomu Medical Center",
-          "Likoni Catholic Dispensary",
-          "Likoni District Hospital",
-          "Likoni HIV Resource Center",
-          "Mbuta Model Health Center",
-          "Mrima Maternity Hospital",
-          "Mtongwe (MCM) Dispensary",
-          "Shika Adabu (MCM) Dispensary",
-        ],
-      },
-      { name: "Mombasa", facilities: ["Shimo Borstal Dispensary"] },
-      {
-        name: "Mvita",
-        facilities: [
-          "Bomu Medical Center – Old Town",
-          "Cdc Ganjoni Dispensary",
-          "Coast General Teaching and Refferal Hospital",
-          "Drop In Service Center",
-          "Kaderboy Medical Clinic (Old Town)",
-          "Kenya Ports Authority Staff Clinic",
-          "Kingorani Prison Dispensary",
-          "Majengo Dispensary (Mombasa)",
-          "Mewa Hospital",
-          "Mvita Dispensary",
-          "Railway Dispensary (Kilindini)",
-          "Statehouse Dispensary",
-          "Tononoka Administration Police Dispensary & VCT",
-          "Tudor District Hospital (Mombasa)",
-        ],
-      },
-      {
-        name: "Nyali",
-        facilities: [
-          "AHF Soko Clinic",
-          "Bamburi Dispensary",
-          "Jericho Medical Clinic",
-          "Kisauni Health Center",
-          "Kongowea Health Center",
-          "Mbungoni Catholic Dispensary",
-          "Meditrust Health Care Services",
-          "Mlaleo Health Center (MOH)",
-          "Sayyida Fatimah Hospital",
-        ],
-      },
-    ],
+    name: "Rift Valley Provincial General Hospital CCC (Nakuru)",
+    phone: "+254776154320",
   },
 ];
 
 export const couriers = [
-  "G4S Courier Service",
-  "Shujaa Delivery",
-  "Haraka Delivery Services",
-  "Deliveroo Courier Service Ltd",
-  "Postal Corporation of Kenya",
+  "G4S Kenya",
+  "DHL Kenya",
+  "FedEx Kenya",
+  "Aramex",
+  "Posta Kenya",
+  "Sendy",
+  "Fargo Courier",
+  "Wells Fargo",
+];
+
+export const EMR_patients = [
+  {
+    ccc_no: "12345678",
+    full_name: "John Doe",
+    facility: "Coast Provincial General Hospital CCC (Mombasa)",
+  },
+  {
+    ccc_no: "ABC1234",
+    full_name: "Chris Parker",
+    facility: "Nyanza Provincial General Hospital CCC (Kisumu)",
+  },
+];
+
+export const patients = [
+  {
+    ccc_no: "12345678",
+    full_name: "John Doe",
+    facility: "Coast Provincial General Hospital CCC (Mombasa)",
+    phone: "+254738960475",
+    username: "johndoe",
+    password: "123456",
+  },
+  {
+    ccc_no: "ABC1234",
+    full_name: "Chris Parker",
+    facility: "Nyanza Provincial General Hospital CCC (Kisumu)",
+    phone: "+254738960475",
+    username: "amchris",
+    password: "123456",
+  },
+];
+
+export const orders = [
+  {
+    client: "+254738960475",
+    orderId: generateOrderId(),
+    address: "2 Kalimoni",
+    deliverBy: new Date().getTime() + 600000,
+    deliveryFee: 340,
+    courier: "Posta Kenya",
+    status: "delivered",
+  },
+  {
+    client: "+254738960475",
+    orderId: generateOrderId(),
+    address: "9 Nakuru",
+    deliverBy: new Date().getTime() + 600000,
+    deliveryFee: 340,
+    courier: "Posta Kenya",
+    status: "pending",
+  },
+  {
+    client: "+254738960475",
+    orderId: generateOrderId(),
+    address: "204 Githurai",
+    deliverBy: new Date().getTime() + 600000,
+    deliveryFee: 340,
+    courier: "Posta Kenya",
+    status: "delivered",
+  },
+  {
+    client: "+254738960475",
+    orderId: generateOrderId(),
+    address: "2 Changamwe",
+    deliverBy: new Date().getTime() + 600000,
+    deliveryFee: 340,
+    courier: "Posta Kenya",
+    status: "failed",
+  },
+  {
+    client: "+254738960475",
+    orderId: generateOrderId(),
+    address: "234 Kisumu",
+    deliverBy: new Date().getTime() + 600000,
+    deliveryFee: 340,
+    courier: "Posta Kenya",
+    status: "pending",
+  },
 ];

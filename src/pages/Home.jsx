@@ -1,14 +1,9 @@
 import { useEffect, useState } from "react";
 import { BsCheckCircleFill } from "react-icons/bs";
-import Dialog from "@mui/material/Dialog";
-import Login from "../components/Login";
-import { useDispatch, useSelector } from "react-redux";
-import { toggleLoginModal } from "../redux/features/ModalSlice";
+import { useNavigate } from "react-router-dom";
 
 export default function Home() {
   const [scrollP, setScrollP] = useState(0);
-  const dispatch = useDispatch();
-  const { loginOpen } = useSelector((store) => store.modals);
 
   useEffect(() => {
     const unsub = window.addEventListener("scroll", () => {
@@ -17,9 +12,7 @@ export default function Home() {
     return unsub;
   }, []);
 
-  const handleToggle = () => {
-    dispatch(toggleLoginModal());
-  };
+  const navigate = useNavigate();
 
   return (
     <>
@@ -42,9 +35,9 @@ export default function Home() {
           </div>
         </header>
 
-        <Dialog open={loginOpen}>
+        {/* <Dialog open={loginOpen}>
           <Login />
-        </Dialog>
+        </Dialog> */}
 
         {/* section1 */}
         <section className="relative grid gap-[50px] lg:grid-cols-2 sm:grid-cols-1 max-w-[1300px] mx-auto p-5 h-screen ">
@@ -58,7 +51,7 @@ export default function Home() {
             </h2>
             <section className="grid md:grid-cols-2 sm:grid-cols-1 gap-3 max-w-[500px] mx-auto w-full mt-10">
               <button
-                onClick={handleToggle}
+                onClick={() => navigate("/login")}
                 className="w-full bg-red text-white px-5 p-3 md:text-xl text-md rounded-full hover:scale-[98%]"
               >
                 Order now
@@ -201,7 +194,7 @@ export default function Home() {
             and have them delivered to your home.
           </h2>
           <button
-            onClick={handleToggle}
+            onClick={() => navigate("/login")}
             className="bg-red text-white px-5 p-3 text-xl rounded-full hover:scale-[98%] w-full max-w-[250px] mt-10"
           >
             Order now

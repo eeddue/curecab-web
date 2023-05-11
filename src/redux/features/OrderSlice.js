@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { orders } from "../../../data";
 
 const OrderSlice = createSlice({
   name: "orders",
   initialState: {
-    orders: [],
+    orders: [...orders],
   },
   reducers: {
     setOrders: (state, action) => {
@@ -11,9 +12,6 @@ const OrderSlice = createSlice({
     },
     updateOrders: (state, action) => {
       state.orders = [...state.orders, action.payload];
-      state.orders.sort((a, b) => {
-        return new Date(b.createdAt) - new Date(a.createdAt);
-      });
     },
   },
 });

@@ -9,6 +9,10 @@ import Welcome from "./pages/Welcome";
 import { Toaster } from "react-hot-toast";
 import { useSelector, useDispatch } from "react-redux";
 import { getUser } from "./redux/features/AuthSlice";
+import Login from "./pages/Login";
+import Order from "./pages/Order";
+import Register from "./pages/Register";
+import Forgot from "./pages/Forgot";
 
 const ProtectedRoute = ({ children, user }) => {
   if (!user) return <Navigate to="/" replace={true} />;
@@ -29,7 +33,7 @@ function App() {
       path: "/",
       element: (
         <NoUserRoute user={user}>
-          <Home />
+          <Home />,
         </NoUserRoute>
       ),
     },
@@ -38,6 +42,38 @@ function App() {
       element: (
         <ProtectedRoute user={user}>
           <Welcome />
+        </ProtectedRoute>
+      ),
+    },
+    {
+      path: "/login",
+      element: (
+        <NoUserRoute user={user}>
+          <Login />
+        </NoUserRoute>
+      ),
+    },
+    {
+      path: "/register",
+      element: (
+        <NoUserRoute user={user}>
+          <Register />
+        </NoUserRoute>
+      ),
+    },
+    {
+      path: "/forgot",
+      element: (
+        <NoUserRoute user={user}>
+          <Forgot />
+        </NoUserRoute>
+      ),
+    },
+    {
+      path: "/order",
+      element: (
+        <ProtectedRoute user={user}>
+          <Order />
         </ProtectedRoute>
       ),
     },

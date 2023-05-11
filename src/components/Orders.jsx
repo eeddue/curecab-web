@@ -13,25 +13,14 @@ function Orders() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const fetchOrders = async () => {
-      try {
-        const { data } = await axios.get(
-          `https://5ff6-102-212-236-168.ngrok-free.app/api/v1/orders/clients/${user.phone}`
-        );
-
-        dispatch(setOrders(data.orders));
-        setLoading(false);
-      } catch (error) {
-        setLoading(false);
-        return toast.error(error.response.data.msg);
-      }
-    };
-    fetchOrders();
-  }, [user.phone, dispatch]);
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+  }, []);
 
   const getStyles = (status) => {
-    if (status === "approaving") return "bg-[#FCF4C7] text-[#854E23]";
-    if (status === "rejected") return "bg-[#F8EAE9] text-[#752E32]";
+    if (status === "pending") return "bg-[#FCF4C7] text-[#854E23]";
+    if (status === "failed") return "bg-[#F8EAE9] text-[#752E32]";
     return "bg-[#C8F7DF] text-[#559982] px-4";
   };
 
@@ -65,7 +54,9 @@ function Orders() {
                   </td>
                   <td className="md:text-md text-[14px]">
                     <span
-                      className={`px-4 rounded-md ${getStyles(order.status)}`}
+                      className={`px-4 rounded-md ${getStyles(
+                        order.status
+                      )}`}
                     >
                       {order.status}
                     </span>

@@ -26,7 +26,6 @@ td {
   border: 1px solid #ccc;
 }
 
-
 th {
   padding: 5px;
 }
@@ -52,4 +51,9 @@ td {
   background-color: #ccc;
   outline: 1px solid #ccc;
   border-radius: 10px;
+}
+
+input,
+button {
+  outline: none;
 }
