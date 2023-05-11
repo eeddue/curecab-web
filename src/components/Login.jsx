@@ -43,7 +43,7 @@ function Login() {
     setLoading(true);
     try {
       const { data } = await axios.post(
-        "http://localhost:5000/api/v1/auth/clients/verify",
+        "https://5ff6-102-212-236-168.ngrok-free.app/api/api/v1/auth/clients/verify",
         { phone, verifyCode: parseInt(code) }
       );
       toast.success(data.msg);
