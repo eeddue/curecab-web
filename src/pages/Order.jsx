@@ -41,7 +41,7 @@ function Order() {
         })
       );
       setLoading(false);
-      toast.error("Your order was placed successfully.");
+      toast.success("Your order was placed successfully.");
       return navigate("/welcome");
     }, 1500);
   };
