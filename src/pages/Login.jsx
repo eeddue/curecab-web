@@ -3,7 +3,7 @@ import { AiOutlineUser } from "react-icons/ai";
 import { FiLock } from "react-icons/fi";
 import { CgSpinnerTwoAlt } from "react-icons/cg";
 
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import { patients } from "../../data";
 import { useDispatch } from "react-redux";
@@ -13,7 +13,6 @@ function Login() {
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleLogin = (e) => {
@@ -46,14 +45,14 @@ function Login() {
           Sign in to continue.
         </p>
         <section className="mt-5">
-          <label htmlFor="" className="text-xl">
+          <label htmlFor="" className="md:text-xl">
             Phone number
           </label>
-          <div className="flex gap-2 p-3 px-5 border-[1px] border-bcolor items-center rounded-md mt-1">
+          <div className="flex gap-2 p-2 md:p-3 px-5 border-[1px] border-bcolor items-center rounded-md mt-1">
             <AiOutlineUser className="text-2xl text-lblack" />
             <input
               type="text"
-              className="w-full text-lg px-3 text-lblack"
+              className="w-full md:text-lg px-3 text-lblack"
               placeholder="01 . . . . . . "
               value={phone}
               onChange={(e) => setPhone(e.target.value.trim())}
@@ -62,21 +61,21 @@ function Login() {
         </section>
 
         <section className="mt-5">
-          <label htmlFor="" className="text-xl">
+          <label htmlFor="" className="md:text-xl">
             Password
           </label>
-          <div className="flex gap-2 p-3 px-5 border-[1px] border-bcolor items-center rounded-md mt-1">
+          <div className="flex gap-2 p-2 md:p-3 px-5 border-[1px] border-bcolor items-center rounded-md mt-1">
             <FiLock className="text-2xl text-lblack" />
             <input
               type="password"
-              className="w-full text-lg px-3 text-lblack"
+              className="w-full md:text-lg px-3 text-lblack"
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value.trim())}
             />
           </div>
         </section>
-        <Link to="/forgot" className="text-red text-lg self-end my-3">
+        <Link to="/forgot" className="text-red md:text-lg self-end my-3">
           Forgot password?
         </Link>
         <button className="h-[55px] bg-red rounded-md text-xl hover:scale-[98%] ease-in-out duration-300 font-bold text-white">
@@ -87,7 +86,7 @@ function Login() {
           )}
         </button>
 
-        <p className="text-lg text-center mt-6">
+        <p className="md:text-lg text-center mt-6">
           Dont have an account?
           <Link to="/register" className="text-red ml-3 font-bold">
             Sign up

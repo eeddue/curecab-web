@@ -1,16 +1,11 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
-import { toast } from "react-hot-toast";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import moment from "moment";
 import Loader from "./Loader";
-import { setOrders } from "../redux/features/OrderSlice";
 
 function Orders() {
   const [loading, setLoading] = useState(true);
-  const { user } = useSelector((store) => store.auth);
   const { orders } = useSelector((store) => store.orders);
-  const dispatch = useDispatch();
 
   useEffect(() => {
     setTimeout(() => {
@@ -54,9 +49,7 @@ function Orders() {
                   </td>
                   <td className="md:text-md text-[14px]">
                     <span
-                      className={`px-4 rounded-md ${getStyles(
-                        order.status
-                      )}`}
+                      className={`px-4 rounded-md ${getStyles(order.status)}`}
                     >
                       {order.status}
                     </span>

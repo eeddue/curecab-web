@@ -28,11 +28,11 @@ function Register() {
 
     if (password !== cpassword) return toast.error("Passwords don't match.");
 
-    const user = EMR_patients.find((p) => p.ccc_no === ccc);
-    if (!user) return toast.error("Invalid CCC no.");
-
     setLoading(true);
     setTimeout(() => {
+      const user = EMR_patients.find((p) => p.ccc_no === ccc);
+      if (!user) return toast.error("Invalid CCC no.");
+
       setLoading(false);
       setFoundUser(user);
     }, 1000);
@@ -68,13 +68,13 @@ function Register() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 md:gap-3 gap-0">
           <section className="mt-2 w-full">
-            <label htmlFor="" className="text-xl">
+            <label htmlFor="" className="md:text-xl">
               Username
             </label>
             <div className="flex gap-2 p-3 px-5 border-[1px] border-bcolor items-center rounded-md mt-1">
               <input
                 type="text"
-                className="w-full text-lg px-3 text-lblack"
+                className="w-full md:text-lg px-3 text-lblack"
                 placeholder="Enter username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value.trim())}
@@ -83,13 +83,13 @@ function Register() {
           </section>
 
           <section className="mt-2 w-full">
-            <label htmlFor="" className="text-xl">
+            <label htmlFor="" className="md:text-xl">
               Phone
             </label>
             <div className="flex gap-2 p-3 px-5 border-[1px] border-bcolor items-center rounded-md mt-1">
               <input
                 type="text"
-                className="w-full text-lg px-3 text-lblack"
+                className="w-full md:text-lg px-3 text-lblack"
                 placeholder="+254......"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value.trim())}
@@ -100,13 +100,13 @@ function Register() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 md:gap-3 gap-0">
           <section className="mt-2 w-full">
-            <label htmlFor="" className="text-xl">
+            <label htmlFor="" className="md:text-xl">
               CCC number
             </label>
             <div className="flex gap-2 p-3 px-5 border-[1px] border-bcolor items-center rounded-md mt-1">
               <input
                 type="text"
-                className="w-full text-lg px-3 text-lblack"
+                className="w-full md:text-lg px-3 text-lblack"
                 placeholder="Enter your CCC no."
                 value={ccc}
                 onChange={(e) => setCcc(e.target.value.trim())}
@@ -114,14 +114,14 @@ function Register() {
             </div>
           </section>
           <section className="mt-2 w-full">
-            <label htmlFor="" className="text-xl">
+            <label htmlFor="" className="md:text-xl">
               Password
             </label>
             <div className="flex gap-2 p-3 px-5 border-[1px] border-bcolor items-center rounded-md mt-1">
               <FiLock className="text-2xl text-lblack" />
               <input
                 type="password"
-                className="w-full text-lg px-3 text-lblack"
+                className="w-full md:text-lg px-3 text-lblack"
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value.trim())}
@@ -131,14 +131,14 @@ function Register() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 md:gap-3 gap-0">
           <section className="mt-2 w-full">
-            <label htmlFor="" className="text-xl">
+            <label htmlFor="" className="md:text-xl">
               Confirm Password
             </label>
             <div className="flex gap-2 p-3 px-5 border-[1px] border-bcolor items-center rounded-md mt-1">
               <FiLock className="text-2xl text-lblack" />
               <input
                 type="password"
-                className="w-full text-lg px-3 text-lblack"
+                className="w-full md:text-lg px-3 text-lblack"
                 placeholder="Confirm Password"
                 value={cpassword}
                 onChange={(e) => setCpassword(e.target.value.trim())}
@@ -147,7 +147,7 @@ function Register() {
           </section>
 
           <button
-            className="h-[55px] bg-red rounded-md text-xl font-bold text-white mt-0 sm:mt-5 
+            className="h-[50px] md:h-[55px] bg-red rounded-md text-lg md:text-xl font-bold text-white mt-0 sm:mt-5 
           self-end w-full hover:scale-[98%] ease-in-out duration-300"
           >
             {!foundUser && loading ? (
