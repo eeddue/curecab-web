@@ -31,7 +31,10 @@ function Register() {
     setLoading(true);
     setTimeout(() => {
       const user = EMR_patients.find((p) => p.ccc_no === ccc);
-      if (!user) return toast.error("Invalid CCC no.");
+      if (!user) {
+        setLoading(false);
+        return toast.error("Invalid CCC no.");
+      }
 
       setLoading(false);
       setFoundUser(user);

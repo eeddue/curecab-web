@@ -24,10 +24,16 @@ function Login() {
     setLoading(true);
     setTimeout(() => {
       const user = patients.find((p) => p.phone === phone);
-      if (!user) return toast.error("Invalid credentials.");
+      if (!user) {
+        setLoading(false);
+        return toast.error("Invalid credentials.");
+      }
 
       const passwordMatch = password === user.password;
-      if (!passwordMatch) return toast.error("Invalid credentials.");
+      if (!passwordMatch) {
+        setLoading(false);
+        return toast.error("Invalid credentials.");
+      }
 
       setLoading(false);
       dispatch(setUser(user));
