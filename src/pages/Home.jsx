@@ -35,10 +35,6 @@ export default function Home() {
           </div>
         </header>
 
-        {/* <Dialog open={loginOpen}>
-          <Login />
-        </Dialog> */}
-
         {/* section1 */}
         <section className="relative grid gap-[50px] lg:grid-cols-2 sm:grid-cols-1 max-w-[1300px] mx-auto p-5 h-screen ">
           <div className="w-full h-full flex flex-col justify-center md:mx-4 sm:mx-4 ">
@@ -58,7 +54,7 @@ export default function Home() {
               </button>
 
               <a
-                href="https://play.google.com/store/apps/details?id=com.mhealth.ushauriv2"
+                href="https://play.google.com/store/apps/details?id=com.mhealth.nishauri"
                 rel="noreferrer"
                 target="_blank"
                 className="w-full bg-[#3F00FF] text-white px-5 p-3 md:text-xl text-md rounded-full hover:scale-[98%]  text-center"
