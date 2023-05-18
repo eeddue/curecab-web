@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function Home() {
   const [scrollP, setScrollP] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const unsub = window.addEventListener("scroll", () => {
@@ -11,8 +12,6 @@ export default function Home() {
     });
     return unsub;
   }, []);
-
-  const navigate = useNavigate();
 
   return (
     <>
@@ -34,7 +33,6 @@ export default function Home() {
             </a>
           </div>
         </header>
-
         {/* section1 */}
         <section className="relative grid gap-[50px] lg:grid-cols-2 sm:grid-cols-1 max-w-[1300px] mx-auto p-5 h-screen ">
           <div className="w-full h-full flex flex-col justify-center md:mx-4 sm:mx-4 ">
@@ -73,7 +71,6 @@ export default function Home() {
             </div>
           </div>
         </section>
-
         {/* about */}
         <section id="about" className="px-5 py-[50px]">
           <h2 className="text-3xl font-bold text-center"> ~ About us ~</h2>
@@ -96,7 +93,6 @@ export default function Home() {
             </div>
           </div>
         </section>
-
         {/* section2 */}
         <section className="bg-[#F1F5FD] py-[100px] px-5">
           <div className="max-w-[1300px] mx-auto">
@@ -129,7 +125,6 @@ export default function Home() {
             </div>
           </div>
         </section>
-
         {/* section3 */}
         <section>
           <div className="max-w-[1300px] mx-auto p-5 py-[100px]">
@@ -181,7 +176,6 @@ export default function Home() {
             </section>
           </div>
         </section>
-
         {/* footer */}
         <footer className="bg-black py-[100px] px-5 text-center">
           <h1 className="text-white text-5xl font-bold">Let's goooo!!!</h1>

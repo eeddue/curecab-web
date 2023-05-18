@@ -41,11 +41,13 @@ export const EMR_patients = [
     ccc_no: "12345678",
     full_name: "John Doe",
     facility: "Coast Provincial General Hospital CCC (Mombasa)",
+    id_no: 12345678,
   },
   {
     ccc_no: "ABC1234",
     full_name: "Chris Parker",
     facility: "Nyanza Provincial General Hospital CCC (Kisumu)",
+    id_no: 12345678,
   },
 ];
 
@@ -57,6 +59,7 @@ export const patients = [
     phone: "+254712345678",
     username: "johndoe",
     password: "123456",
+    next_order: 1683749220000,
   },
   {
     ccc_no: "ABC1234",
@@ -65,6 +68,7 @@ export const patients = [
     phone: "+254738960475",
     username: "amchris",
     password: "123456",
+    next_order: 1683749220000,
   },
 ];
 
@@ -77,45 +81,57 @@ export const orders = [
     deliveryFee: 340,
     courier: "Posta Kenya",
     status: "delivered",
-    orderDate: new Date().getTime() - 6000000,
+    orderDate: 1683052500000,
+    delivered: true,
   },
   {
     client: "+254712345678",
     orderId: generateOrderId(),
     address: "9 Nakuru",
     deliverBy: new Date().getTime() + 600000,
-    orderDate: new Date().getTime() - 6000000,
+    orderDate: 1683225300000,
     deliveryFee: 340,
     courier: "Posta Kenya",
-    status: "pending",
+    status: "on-transit",
+    delivered: false,
   },
   {
     client: "+254738960475",
     orderId: generateOrderId(),
     address: "204 Githurai",
-    orderDate: new Date().getTime() - 6000000,
+    orderDate: 1683398100000,
     deliverBy: new Date().getTime() + 600000,
     deliveryFee: 340,
     courier: "Posta Kenya",
     status: "delivered",
+    delivered: true,
   },
   {
     client: "+254738960475",
     orderId: generateOrderId(),
     address: "2 Changamwe",
-    orderDate: new Date().getTime() - 6000000,
+    orderDate: 1683570900000,
     deliverBy: new Date().getTime() + 600000,
     deliveryFee: 340,
     courier: "Posta Kenya",
-    status: "failed",
+    status: "cancelled",
+    delivered: false,
   },
   {
     client: "+254738960475",
     orderId: generateOrderId(),
     address: "234 Kisumu",
     deliverBy: new Date().getTime() + 600000,
+    orderDate: 1683830100000,
     deliveryFee: 340,
     courier: "Posta Kenya",
     status: "pending",
+    delivered: false,
   },
 ];
+
+export const getUserNextOrderDate = (days) => {
+  const time = days * 24 * 60 * 60 * 1000;
+  const next_date = new Date().getTime() + time;
+  return next_date;
+};

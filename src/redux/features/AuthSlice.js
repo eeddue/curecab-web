@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { getUserNextOrderDate } from "../../../data";
 
 const AuthSlice = createSlice({
   name: "auth",
@@ -17,8 +18,15 @@ const AuthSlice = createSlice({
     getUser: (state) => {
       state.user = JSON.parse(localStorage.getItem("user"));
     },
+    setUserNextOrder: (state, action) => {
+      state.user = {
+        ...state.user,
+        next_order: getUserNextOrderDate(action.payload),
+      };
+    },
   },
 });
 
-export const { signOut, setUser, getUser } = AuthSlice.actions;
+export const { signOut, setUser, getUser, setUserNextOrder } =
+  AuthSlice.actions;
 export default AuthSlice.reducer;

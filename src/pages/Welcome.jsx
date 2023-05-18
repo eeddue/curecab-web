@@ -2,10 +2,12 @@ import Orders from "../components/Orders";
 import { useDispatch, useSelector } from "react-redux";
 import { signOut } from "../redux/features/AuthSlice";
 import { useNavigate } from "react-router-dom";
+import moment from "moment";
 
 function Index() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { user } = useSelector((store) => store.auth);
 
   const all = {
     delivered: { bg: "#FCF4C7", color: "#854E23" },
@@ -21,6 +23,8 @@ function Index() {
     if (hourNow >= 12 && hourNow < 18) return "Good afternoon";
     return "Good evening";
   };
+
+  const canOrder = user.next_order < new Date().getTime();
 
   return (
     <div className="">
@@ -41,20 +45,30 @@ function Index() {
         </div>
       </header>
 
-      <section className="max-w-[700px] mx-auto p-5">
+      <section className="max-w-[800px] mx-auto p-5">
         <h1 className="font-bold md:text-3xl text-xl text-lblack mb-2">
           {Greetings()}, <br />
           <span className="text-black md:text-4xl text-2xl">{"John Doe"} </span>
         </h1>
-        <h2 className="text-lblack md:text-lg mb-4">
-          You can now request a new order and we'll get it delivered to you.
-        </h2>
-        <button
-          onClick={() => navigate("/order")}
-          className="w-[200px] h-[50px] bg-red rounded-full text-white text-lg hover:scale-[98%]"
-        >
-          Make order
-        </button>
+        {canOrder ? (
+          <>
+            <h2 className="text-lblack md:text-lg mb-4">
+              You can now request a new order and we'll get it delivered to you.
+            </h2>
+            <button
+              disabled={!canOrder}
+              onClick={() => navigate("/order")}
+              className="w-[200px] h-[50px] bg-red rounded-full text-white text-lg hover:scale-[98%]"
+            >
+              Make order
+            </button>
+          </>
+        ) : (
+          <p className="bg-[#F8EAE9] text-[#752E32] text-center text-lg p-3 my-5">
+            You will be able to make your next order from{" "}
+            {moment(user.next_order).format("LLL")}.
+          </p>
+        )}
       </section>
 
       <Orders />

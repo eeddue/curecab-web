@@ -59,7 +59,7 @@ function Login() {
             <input
               type="text"
               className="w-full md:text-lg px-3 text-lblack"
-              placeholder="01 . . . . . . "
+              placeholder="+254 . . . . . . "
               value={phone}
               onChange={(e) => setPhone(e.target.value.trim())}
             />
@@ -81,10 +81,16 @@ function Login() {
             />
           </div>
         </section>
-        <Link to="/forgot" className="text-red md:text-lg self-end my-3">
-          Forgot password?
-        </Link>
-        <button className="h-[55px] bg-red rounded-md text-xl hover:scale-[98%] ease-in-out duration-300 font-bold text-white">
+        {!loading && (
+          <Link to="/forgot" className="text-red md:text-lg self-end my-3">
+            Forgot password?
+          </Link>
+        )}
+        <button
+          className={`h-[55px] bg-red rounded-md text-xl hover:scale-[98%] ease-in-out duration-300 font-bold text-white ${
+            loading && "mt-5"
+          }`}
+        >
           {loading ? (
             <CgSpinnerTwoAlt className="animate-spin mx-auto duration-30 text-3xl" />
           ) : (
@@ -92,12 +98,14 @@ function Login() {
           )}
         </button>
 
-        <p className="md:text-lg text-center mt-6">
-          Dont have an account?
-          <Link to="/register" className="text-red ml-3 font-bold">
-            Sign up
-          </Link>
-        </p>
+        {!loading && (
+          <p className="md:text-lg text-center mt-6">
+            Don't have an account?
+            <Link to="/register" className="text-red ml-3 font-bold">
+              Sign up
+            </Link>
+          </p>
+        )}
       </form>
     </div>
   );

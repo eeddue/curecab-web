@@ -6,12 +6,15 @@ import { CgSpinnerTwoAlt } from "react-icons/cg";
 import { toast } from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { updateOrders } from "../redux/features/OrderSlice";
+import { setUserNextOrder } from "../redux/features/AuthSlice";
+import axios from "axios";
 
 function Order() {
   const [facility, setFacility] = useState(null);
   const [loading, setLoading] = useState(false);
   const [courier, setCourier] = useState("");
   const [address, setAddress] = useState("");
+  const [span, setSpan] = useState("");
   const [deliveryDate, setdDeliveryDate] = useState("");
 
   const navigate = useNavigate();
@@ -20,26 +23,39 @@ function Order() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!facility || !courier || !address || !deliveryDate)
+    if (!facility || !courier || !address || !deliveryDate || !span)
       return toast.error("All input fields are required.");
 
     if (deliveryDate <= new Date().toISOString().split("T")[0])
       return toast.error("Select a delivery date from today.");
 
+    const patientMessage = `Your order has been placed successfully. \n Awaiting confirmation and delivery.`;
+    const clinicianMessage = `A new order has been placed. \n Login to the dashboard to process it.`;
     setLoading(true);
     setTimeout(() => {
       dispatch(
         updateOrders({
           facility,
           courier,
-          deliveryFee: 400,
+          deliveryFee: 0,
           orderId: generateOrderId(),
           deliverBy: new Date().getTime() + 60000000,
+          orderDate: new Date().getTime(),
           address,
           client: user.phone,
           status: "pending",
+          delivered: false,
         })
       );
+      dispatch(setUserNextOrder(parseInt(span) - 5));
+      axios.post("http://localhost:5000/send-message", {
+        message: patientMessage,
+        to: "+254114952302",
+      });
+      axios.post("http://localhost:5000/send-message", {
+        message: clinicianMessage,
+        to: "+254114952302",
+      });
       setLoading(false);
       toast.success("Your order was placed successfully.");
       return navigate("/welcome");
@@ -124,6 +140,21 @@ function Order() {
           type="date"
           className="w-full bg-input p-2 md:p-3 rounded-sm mt-1
             outline-none text-lblack"
+        />
+      </div>
+
+      <div className="w-full mb-3">
+        <label className="text-[18px]" htmlFor="">
+          Prescription span (in days)
+        </label>
+        <input
+          disabled={loading}
+          value={span}
+          onChange={(e) => setSpan(e.target.value)}
+          type="number"
+          className="w-full bg-input p-2 md:p-3 rounded-sm mt-1
+            outline-none text-lblack"
+          placeholder="Enter days"
         />
       </div>
 

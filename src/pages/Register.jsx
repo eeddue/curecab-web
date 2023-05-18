@@ -11,9 +11,11 @@ function Register() {
   const [phone, setPhone] = useState("");
   const [ccc, setCcc] = useState("");
   const [password, setPassword] = useState("");
+  const [id, setId] = useState("");
   const [cpassword, setCpassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [foundUser, setFoundUser] = useState(null);
+  const [idmodal, setIdmodal] = useState(false);
 
   const navigate = useNavigate();
 
@@ -43,9 +45,16 @@ function Register() {
 
   const handleRegister = (e) => {
     e.preventDefault();
+    if (!id) return toast.error("Provide an ID number.");
+    const idMatch = parseInt(id) === foundUser.id_no;
+
+    if (!idMatch)
+      return toast.error("Provide the ID number registered with this details.");
+
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
+      setIdmodal(false);
       setFoundUser(null);
       navigate("/login");
       return toast.success(
@@ -68,7 +77,6 @@ function Register() {
         <p className="text-center text-2xl font-bold mb-3">
           Sign up to continue.
         </p>
-
         <div className="grid grid-cols-1 md:grid-cols-2 md:gap-3 gap-0">
           <section className="mt-2 w-full">
             <label htmlFor="" className="md:text-xl">
@@ -100,7 +108,6 @@ function Register() {
             </div>
           </section>
         </div>
-
         <div className="grid grid-cols-1 md:grid-cols-2 md:gap-3 gap-0">
           <section className="mt-2 w-full">
             <label htmlFor="" className="md:text-xl">
@@ -160,20 +167,22 @@ function Register() {
             )}
           </button>
         </div>
-
-        <p className="text-lg text-center mt-6">
-          Dont have an account?
-          <Link to="/login" className="text-red ml-3 font-bold">
-            Login
-          </Link>
-        </p>
+        {!loading && (
+          <p className="text-lg text-center mt-6">
+            Already have an account?
+            <Link to="/login" className="text-red ml-3 font-bold">
+              Login
+            </Link>
+          </p>
+        )}
       </form>
+
       <Dialog open={foundUser}>
         <section className="b-white p-5 rounded-sm w-full max-w-[600px] flex flex-col">
           <p className="text-lg text- text-center">
             Is your name{" "}
             <span className="text-black text-xl font-bold">
-              {foundUser?.full_name}
+              {foundUser?.full_name.split(" ")[0]}...
             </span>{" "}
             with CCC number{" "}
             <span className="text-black text-xl font-bold">
@@ -189,16 +198,50 @@ function Register() {
               NO
             </button>
             <button
+              onClick={() => {
+                setIdmodal(true);
+              }}
+              className="flex-1 rounded-sm bg-green text-white h-[50px] font-bold text-lg"
+            >
+              YES
+            </button>
+          </div>
+        </section>
+      </Dialog>
+
+      <Dialog open={idmodal}>
+        <section className="b-white p-5 rounded-sm max-w-[600px] md:min-w-[450px] w-full flex flex-col">
+          <p className="text-lg md:text-xl text-center mb-5 border-b-[1px] border-bcolor pb-3">
+            Enter your ID Number
+          </p>
+          <input
+            required
+            type="number"
+            placeholder="12345678"
+            value={id}
+            onChange={(e) => setId(e.target.value)}
+            className="w-full bg-input text-lg p-2 px-4 rounded-md"
+          />
+          <section className="flex items-center gap-2 mt-5">
+            <button
+              disabled={loading}
+              onClick={() => setIdmodal(false)}
+              className="flex-1 rounded-sm bg-red text-white h-[50px] font-bold text-lg"
+            >
+              CANCEL
+            </button>
+            <button
+              disabled={loading}
               onClick={handleRegister}
               className="flex-1 rounded-sm bg-green text-white h-[50px] font-bold text-lg"
             >
               {foundUser && loading ? (
                 <CgSpinnerTwoAlt className="animate-spin mx-auto duration-30 text-3xl" />
               ) : (
-                "YES"
+                "CONFIRM"
               )}
             </button>
-          </div>
+          </section>
         </section>
       </Dialog>
     </div>

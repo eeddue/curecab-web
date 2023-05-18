@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import {
   createBrowserRouter,
   RouterProvider,
@@ -82,12 +82,14 @@ function App() {
   useEffect(() => {
     dispatch(getUser());
   }, [dispatch]);
+
   return (
     <>
       <RouterProvider router={router} />
       <Toaster
         toastOptions={{
           className: "body-font font-prompt",
+          duration: 5000,
         }}
       />
     </>

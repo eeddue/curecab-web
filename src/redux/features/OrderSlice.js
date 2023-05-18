@@ -4,7 +4,13 @@ import { orders } from "../../../data";
 const OrderSlice = createSlice({
   name: "orders",
   initialState: {
-    orders: [...orders],
+    orders: [
+      ...orders.sort((a, b) => {
+        return b.orderDate - a.orderDate;
+      }),
+    ],
+    selectedOrder: null,
+    orderModalOpen: false,
   },
   reducers: {
     setOrders: (state, action) => {
@@ -13,8 +19,27 @@ const OrderSlice = createSlice({
     updateOrders: (state, action) => {
       state.orders = [...state.orders, action.payload];
     },
+    setSelectedOrder: (state, action) => {
+      state.selectedOrder = action.payload;
+    },
+    toggleOrder: (state) => {
+      state.orderModalOpen = !state.orderModalOpen;
+    },
+    updateOrdersData: (state, action) => {
+      const orderToChange = state.orders.find(
+        (o) => o.orderId === action.payload
+      );
+      orderToChange.status = "delivered";
+      orderToChange.delivered = true;
+    },
   },
 });
 
-export const { setOrders, updateOrders } = OrderSlice.actions;
+export const {
+  setOrders,
+  updateOrders,
+  setSelectedOrder,
+  toggleOrder,
+  updateOrdersData,
+} = OrderSlice.actions;
 export default OrderSlice.reducer;
