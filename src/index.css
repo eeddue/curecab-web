@@ -33,6 +33,7 @@ th {
 tr {
   width: 100%;
   text-align: center;
+  border: 1px solid #ccc;
 }
 td {
   padding: 5px;

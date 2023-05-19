@@ -17,6 +17,7 @@ module.exports = {
         black: "#111",
         input: "#efefef",
         green: "#60CE64",
+        blue: "#1593EE",
       },
     },
   },

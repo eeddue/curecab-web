@@ -1,28 +1,37 @@
 import { useDispatch } from "react-redux";
-import {
-  setSelectedOrder,
-  updateOrdersData,
-} from "../redux/features/OrderSlice";
+import { updateOrdersData } from "../redux/features/OrderSlice";
 import moment from "moment";
 import { toast } from "react-hot-toast";
 import { CgSpinnerTwoAlt } from "react-icons/cg";
 import { useState } from "react";
+import axios from "axios";
 
-const ConfirmDelivery = ({ selectedOrder, toggleOrder }) => {
+const ConfirmDelivery = ({ selectedOrder, setSelectedOrder }) => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
 
-    setTimeout(() => {
+    try {
+      const { data } = await axios.patch(
+        "http://localhost:5000/api/v1/orders/update/" + selectedOrder._id,
+        {
+          delivered: true,
+          status: "delivered",
+        }
+      );
       dispatch(updateOrdersData(selectedOrder.orderId));
       dispatch(setSelectedOrder(null));
-      dispatch(toggleOrder());
-      toast.success("Order delivery completed. Thank you for choosing us.");
       setLoading(false);
-    }, 1000);
+      return toast.success(
+        "Order delivery completed. Thank you for choosing us."
+      );
+    } catch (error) {
+      setLoading(false);
+      return toast.error(error.response.data.msg);
+    }
   };
   return (
     <section className="w-full h-full flex justify-center items-center">
@@ -36,7 +45,6 @@ const ConfirmDelivery = ({ selectedOrder, toggleOrder }) => {
           <button
             onClick={() => {
               dispatch(setSelectedOrder(null));
-              dispatch(toggleOrder());
             }}
             disabled={loading}
             className="w-full rounded-md h-[45px] text-white text-lg font-bold bg-red"

@@ -1,30 +1,33 @@
 import { useState } from "react";
-import { AiOutlineUser } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
 import { CgSpinnerTwoAlt } from "react-icons/cg";
-import { patients } from "../../data";
+import axios from "axios";
 import { toast } from "react-hot-toast";
+import PhoneInput from "react-phone-number-input";
 
 function Forgot() {
   const [phone, setPhone] = useState("");
+  const [ccc_no, setCcc_no] = useState("");
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!phone) return toast.error("Enter phone number.");
 
     setLoading(true);
-    setTimeout(() => {
-      const user = patients.find((p) => p.phone === phone);
-      if (!user) {
-        setLoading(false);
-        return toast.error("Patient doesn't exist.");
-      }
-
-      setLoading(false);
-      return toast.success(
-        "A password reset link has been sent to your phone number."
+    try {
+      const { data } = await axios.post(
+        "http://localhost:5000/api/v1/patients/forgot-password",
+        { phone, ccc_no }
       );
-    }, 1000);
+      toast.success(data.msg);
+      setLoading(false);
+      return navigate("/login");
+    } catch (error) {
+      setLoading(false);
+      return toast.error(error.response.data.msg);
+    }
   };
 
   return (
@@ -39,20 +42,33 @@ function Forgot() {
         <span className="text-center text-lg text-lblack">
           Don't stress out. We'll help you recover it.
         </span>
-        <section className="mt-5">
+
+        <section className="mt-5 w-full">
+          <label htmlFor="" className="md:text-xl">
+            CCC number
+          </label>
+          <div className="flex gap-2 p-3 px-5 border-[1px] border-bcolor items-center rounded-md mt-1">
+            <input
+              type="text"
+              className="w-full md:text-lg px-3 text-lblack"
+              placeholder="Enter your CCC no."
+              value={ccc_no}
+              onChange={(e) => setCcc_no(e.target.value.trim())}
+            />
+          </div>
+        </section>
+        <section className="mt-3">
           <label htmlFor="" className="text-xl">
             Phone number
           </label>
-          <div className="flex gap-2 p-2 md:p-3 px-5 border-[1px] border-bcolor items-center rounded-md mt-1">
-            <AiOutlineUser className="text-2xl text-lblack" />
-            <input
-              type="text"
-              className="w-full text-lg md:text-lg px-3 text-lblack"
-              placeholder="01 . . . . . . "
-              value={phone}
-              onChange={(e) => setPhone(e.target.value.trim())}
-            />
-          </div>
+          <PhoneInput
+            defaultCountry="KE"
+            disabled={loading}
+            placeholder="0712345678"
+            value={phone}
+            onChange={(e) => setPhone(e?.trim())}
+            className="w-full md:text-lg px-3 text-lblack border-[1px] border-bcolor items-center rounded-md mt-1 h-[55px]"
+          />
         </section>
 
         <button

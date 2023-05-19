@@ -89,7 +89,7 @@ function App() {
       <Toaster
         toastOptions={{
           className: "body-font font-prompt",
-          duration: 5000,
+          duration: 3500,
         }}
       />
     </>

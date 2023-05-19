@@ -3,17 +3,21 @@ import { useDispatch, useSelector } from "react-redux";
 import { signOut } from "../redux/features/AuthSlice";
 import { useNavigate } from "react-router-dom";
 import moment from "moment";
+import { useState, useEffect } from "react";
 
 function Index() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { user } = useSelector((store) => store.auth);
+  const [time, setTime] = useState("");
 
-  const all = {
-    delivered: { bg: "#FCF4C7", color: "#854E23" },
-    pending: { bg: "#C8F7DF", color: "#559982" },
-    failed: { bg: "#F8EAE9", color: "#752E32" },
-  };
+  useEffect(() => {
+    const interval = setInterval(() => setTime(new Date().getTime()), 1000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
 
   const Greetings = () => {
     let today = new Date();
@@ -24,7 +28,7 @@ function Index() {
     return "Good evening";
   };
 
-  const canOrder = user.next_order < new Date().getTime();
+  const canOrder = new Date(user.next_order) < new Date();
 
   return (
     <div className="">
@@ -33,22 +37,38 @@ function Index() {
           border-b-[1px] border-solid border-bcolor
         `}
       >
-        <div className="flex justify-between items-center p-4 max-w-[1400px] mx-auto">
+        <div className="flex justify-between items-center p-4 py-2 max-w-[1300px] mx-auto">
           <h1 className="font-bold text-red text-3xl">CURECAB</h1>
 
-          <button
-            onClick={() => dispatch(signOut())}
-            className="md:w-[150px] w-[100px] h-[45px] border-solid border-[1px] border-bcolor rounded hover:border-red text-lblack md:text-lg"
-          >
-            Log out
-          </button>
+          <div className="flex gap-3 items-center">
+            {time && (
+              <div
+                className="h-[40px] w-[150px] bg-red flex
+             items-center justify-center text-white font-bold rounded-md "
+              >
+                <span className="">{moment(time).format("hh:mm:ss a")}</span>
+              </div>
+            )}
+            <button
+              onClick={() => dispatch(signOut())}
+              className="w-[55px] h-[55px] rounded-full"
+            >
+              <img
+                src={user.photoUrl}
+                alt=""
+                className="rounded-full w-full h-full"
+              />
+            </button>
+          </div>
         </div>
       </header>
 
       <section className="max-w-[800px] mx-auto p-5">
         <h1 className="font-bold md:text-3xl text-xl text-lblack mb-2">
           {Greetings()}, <br />
-          <span className="text-black md:text-4xl text-2xl">{"John Doe"} </span>
+          <span className="text-black md:text-4xl text-2xl">
+            {user.full_name}
+          </span>
         </h1>
         {canOrder ? (
           <>
