@@ -10,7 +10,6 @@ import axios from "axios";
 
 function Orders() {
   const [loading, setLoading] = useState(true);
-  const [expanded, setExpanded] = useState(false);
   const { user } = useSelector((store) => store.auth);
   const dispatch = useDispatch();
   const { orders, selectedOrder } = useSelector((store) => store.orders);
@@ -30,9 +29,6 @@ function Orders() {
     })();
   }, []);
 
-  const handleChange = () => {
-    setExpanded(!expanded);
-  };
 
   const getStyles = (status) => {
     if (status === "pending") return "bg-[#FCF4C7] text-[#854E23]";
