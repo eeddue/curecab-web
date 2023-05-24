@@ -23,12 +23,12 @@ function Orders() {
         dispatch(setOrders(data.orders));
         setLoading(false);
       } catch (error) {
+        console.log(error);
         setLoading(false);
         return toast.error(error.response.data.msg);
       }
     })();
   }, []);
-
 
   const getStyles = (status) => {
     if (status === "pending") return "bg-[#FCF4C7] text-[#854E23]";
