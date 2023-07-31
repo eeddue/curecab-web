@@ -15,9 +15,7 @@ const AuthSlice = createSlice({
       localStorage.setItem("user", JSON.stringify(action.payload));
       state.user = action.payload;
     },
-    getUser: (state) => {
-      state.user = JSON.parse(localStorage.getItem("user"));
-    },
+
     setUserNextOrder: (state, action) => {
       state.user = {
         ...state.user,
@@ -27,6 +25,5 @@ const AuthSlice = createSlice({
   },
 });
 
-export const { signOut, setUser, getUser, setUserNextOrder } =
-  AuthSlice.actions;
+export const { signOut, setUser, setUserNextOrder } = AuthSlice.actions;
 export default AuthSlice.reducer;

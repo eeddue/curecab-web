@@ -131,7 +131,8 @@ export const orders = [
 ];
 
 export const getUserNextOrderDate = (days) => {
-  const time = days * 24 * 60 * 60 * 1000;
+  const diff = days - 5;
+  const time = diff * 24 * 60 * 60 * 1000;
   const next_date = new Date().getTime() + time;
   return next_date;
 };

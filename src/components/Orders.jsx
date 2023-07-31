@@ -53,7 +53,7 @@ function Orders() {
 
   return (
     <section className="flex flex-col max-w-[800px] mx-auto p-5">
-      <h1 className="text-xl">Order history</h1>
+      <h1 className="text-2xl mb-3 font-bold">Order history</h1>
       {orders.length > 0 ? (
         <section className="overflow-x-scroll scroll scroll-smooth nobar ">
           <table className="w-full border-collapse min-w-[600px]">
@@ -117,7 +117,9 @@ function Orders() {
           </table>
         </section>
       ) : (
-        <div>You haven't made any orders yet.</div>
+        <div className="w-full flex justify-center items-center h-[400px] bg-input rounded-md mt-5">
+          <p className="text-[20px]">You haven't made any orders yet.</p>
+        </div>
       )}
       <Modal open={selectedOrder !== null}>
         <ConfirmDelivery

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
   createBrowserRouter,
   RouterProvider,
@@ -8,11 +8,13 @@ import Home from "./pages/Home";
 import Welcome from "./pages/Welcome";
 import { Toaster } from "react-hot-toast";
 import { useSelector, useDispatch } from "react-redux";
-import { getUser } from "./redux/features/AuthSlice";
+import { setUser } from "./redux/features/AuthSlice";
 import Login from "./pages/Login";
 import Order from "./pages/Order";
 import Register from "./pages/Register";
 import Forgot from "./pages/Forgot";
+import axios from "axios";
+import { url } from "../lib/axios";
 
 const ProtectedRoute = ({ children, user }) => {
   if (!user) return <Navigate to="/" replace={true} />;
@@ -27,13 +29,14 @@ const NoUserRoute = ({ children, user }) => {
 function App() {
   const { user } = useSelector((store) => store.auth);
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
 
   const router = createBrowserRouter([
     {
       path: "/",
       element: (
         <NoUserRoute user={user}>
-          <Home />,
+          <Home />
         </NoUserRoute>
       ),
     },
@@ -80,8 +83,30 @@ function App() {
   ]);
 
   useEffect(() => {
-    dispatch(getUser());
+    (async () => {
+      try {
+        setLoading(true);
+        const user = JSON.parse(localStorage.getItem("user"));
+        const { data } = await axios.get(url + `/patients/get/${user._id}`);
+        dispatch(setUser(data?.patient));
+        setTimeout(() => {
+          setLoading(false);
+        }, 1000);
+      } catch (error) {
+        setTimeout(() => {
+          setLoading(false);
+        }, 1000);
+        console.log(error);
+      }
+    })();
   }, [dispatch]);
+
+  if (loading)
+    return (
+      <div className="w-full h-screen flex justify-center items-center">
+        <img src="favicon.png" alt="" className="w-[150px]" />
+      </div>
+    );
 
   return (
     <>

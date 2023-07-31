@@ -57,7 +57,7 @@ function Order() {
           span,
           facility,
           photoUrl: user.photoUrl,
-          next_order: getUserNextOrderDate(span),
+          next_order: getUserNextOrderDate(parseInt(span)),
         }
       );
 
@@ -74,114 +74,117 @@ function Order() {
   };
 
   return (
-    <form className="bg-white rounded-md w-full max-w-[600px] mx-auto p-5">
-      <div className="sticky top-0 bg-white py-1  z-10 w-full border-b-[1px] border-bcolor mb-3">
+    <div className="">
+      <header className="sticky top-0 bg-white  z-10 w-full border-b-[1px] border-bcolor mb-3 py-3">
+        <div className="w-full max-w-[600px] mx-auto relative">
+          <button
+            disabled={loading}
+            onClick={(e) => {
+              e.preventDefault();
+              navigate("/welcome");
+            }}
+            className="text-2xl absolute left-2 text-lblack top-2"
+          >
+            <BsArrow90DegLeft />
+          </button>
+          <p className="md:text-3xl text-xl text-center">Make order</p>
+        </div>
+      </header>
+      <form className="bg-white rounded-md w-full max-w-[600px] mx-auto p-5">
+        <div className="w-full mb-3 flex flex-col">
+          <label htmlFor="" className="text-[18px]">
+            Facility
+          </label>
+          <select
+            disabled={loading}
+            onChange={(e) => setFacility(e.target.value)}
+            className="w-full bg-input p-2 md:p-3 rounded-sm mt-1 outline-none text-lblack"
+          >
+            <option value="">- Select -</option>
+            {facilities?.map((fc, i) => (
+              <option key={i} value={facility.name}>
+                {fc.name}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div className="w-full mb-3 flex flex-col">
+          <label htmlFor="" className="text-[18px]">
+            Preffered Courier
+          </label>
+          <select
+            defaultValue="any"
+            disabled={loading}
+            onChange={(e) => setCourier(e.target.value)}
+            className="w-full bg-input p-2 md:p-3 rounded-sm mt-1 outline-none text-lblack"
+          >
+            <option value="any">Any</option>
+            {couriers?.map((courier) => (
+              <option key={courier} value={courier}>
+                {courier}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div className="w-full mb-3">
+          <label className="text-[18px]" htmlFor="">
+            Delivery address
+          </label>
+          <input
+            disabled={loading}
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
+            type="text"
+            placeholder="1234 example"
+            className="w-full bg-input p-2 md:p-3 rounded-sm mt-1
+            outline-none text-lblack"
+          />
+        </div>
+
+        <div className="w-full mb-3">
+          <label className="text-[18px]" htmlFor="">
+            Delivery by
+          </label>
+          <input
+            disabled={loading}
+            value={deliverBy}
+            onChange={(e) => setdDeliverBy(e.target.value)}
+            type="date"
+            className="w-full bg-input p-2 md:p-3 rounded-sm mt-1
+            outline-none text-lblack"
+          />
+        </div>
+
+        <div className="w-full mb-3">
+          <label className="text-[18px]" htmlFor="">
+            Prescription span (in days)
+          </label>
+          <input
+            disabled={loading}
+            value={span}
+            onChange={(e) => setSpan(e.target.value)}
+            type="number"
+            className="w-full bg-input p-2 md:p-3 rounded-sm mt-1
+            outline-none text-lblack"
+            placeholder="Enter days"
+          />
+        </div>
+
         <button
           disabled={loading}
-          onClick={(e) => {
-            e.preventDefault();
-            navigate("/welcome");
-          }}
-          className="text-2xl absolute left-0 text-lblack"
+          onClick={handleSubmit}
+          className="w-full bg-red h-[55px] text-white text-bold text-xl hover:opacity-[.8] rounded-md mt-5"
         >
-          <BsArrow90DegLeft />
+          {loading ? (
+            <CgSpinnerTwoAlt className="animate-spin mx-auto duration-30 text-3xl" />
+          ) : (
+            "Continue"
+          )}
         </button>
-        <p className="md:text-3xl text-xl pb-2 text-center">Make order</p>
-      </div>
-
-      <div className="w-full mb-3 flex flex-col">
-        <label htmlFor="" className="text-[18px]">
-          Facility
-        </label>
-        <select
-          disabled={loading}
-          onChange={(e) => setFacility(e.target.value)}
-          className="w-full bg-input p-2 md:p-3 rounded-sm mt-1 outline-none text-lblack"
-        >
-          <option value="">- Select -</option>
-          {facilities?.map((fc, i) => (
-            <option key={i} value={facility.name}>
-              {fc.name}
-            </option>
-          ))}
-        </select>
-      </div>
-
-      <div className="w-full mb-3 flex flex-col">
-        <label htmlFor="" className="text-[18px]">
-          Preffered Courier
-        </label>
-        <select
-          defaultValue="any"
-          disabled={loading}
-          onChange={(e) => setCourier(e.target.value)}
-          className="w-full bg-input p-2 md:p-3 rounded-sm mt-1 outline-none text-lblack"
-        >
-          <option value="any">- Any -</option>
-          {couriers?.map((courier) => (
-            <option key={courier} value={courier}>
-              {courier}
-            </option>
-          ))}
-        </select>
-      </div>
-
-      <div className="w-full mb-3">
-        <label className="text-[18px]" htmlFor="">
-          Delivery address
-        </label>
-        <input
-          disabled={loading}
-          value={address}
-          onChange={(e) => setAddress(e.target.value)}
-          type="text"
-          placeholder="1234 example"
-          className="w-full bg-input p-2 md:p-3 rounded-sm mt-1
-            outline-none text-lblack"
-        />
-      </div>
-
-      <div className="w-full mb-3">
-        <label className="text-[18px]" htmlFor="">
-          Delivery by
-        </label>
-        <input
-          disabled={loading}
-          value={deliverBy}
-          onChange={(e) => setdDeliverBy(e.target.value)}
-          type="date"
-          className="w-full bg-input p-2 md:p-3 rounded-sm mt-1
-            outline-none text-lblack"
-        />
-      </div>
-
-      <div className="w-full mb-3">
-        <label className="text-[18px]" htmlFor="">
-          Prescription span (in days)
-        </label>
-        <input
-          disabled={loading}
-          value={span}
-          onChange={(e) => setSpan(e.target.value)}
-          type="number"
-          className="w-full bg-input p-2 md:p-3 rounded-sm mt-1
-            outline-none text-lblack"
-          placeholder="Enter days"
-        />
-      </div>
-
-      <button
-        disabled={loading}
-        onClick={handleSubmit}
-        className="w-full bg-red h-[55px] text-white text-bold text-xl hover:opacity-[.8] rounded-md mt-5"
-      >
-        {loading ? (
-          <CgSpinnerTwoAlt className="animate-spin mx-auto duration-30 text-3xl" />
-        ) : (
-          "Continue"
-        )}
-      </button>
-    </form>
+      </form>
+    </div>
   );
 }
 
