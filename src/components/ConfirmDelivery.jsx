@@ -4,7 +4,7 @@ import moment from "moment";
 import { toast } from "react-hot-toast";
 import { CgSpinnerTwoAlt } from "react-icons/cg";
 import { useState } from "react";
-import axios from "axios";
+import { fetcher } from "../../lib/axios";
 
 const ConfirmDelivery = ({ selectedOrder, setSelectedOrder }) => {
   const dispatch = useDispatch();
@@ -15,8 +15,8 @@ const ConfirmDelivery = ({ selectedOrder, setSelectedOrder }) => {
     setLoading(true);
 
     try {
-      const { data } = await axios.patch(
-        "http://localhost:5000/api/v1/orders/update/" + selectedOrder._id,
+      const { data } = await fetcher.patch(
+        "/orders/update/" + selectedOrder._id,
         {
           delivered: true,
           status: "delivered",

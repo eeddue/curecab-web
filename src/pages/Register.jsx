@@ -6,8 +6,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { CgSpinnerTwoAlt } from "react-icons/cg";
 import { Dialog } from "@mui/material";
 import PhoneInput from "react-phone-number-input";
-import axios from "axios";
 import { generateAvatar } from "../../lib/avatar";
+import { fetcher } from "../../lib/axios";
 
 function Register() {
   const [phone, setPhone] = useState("");
@@ -34,10 +34,7 @@ function Register() {
 
     setLoading(true);
     try {
-      const { data } = await axios.post(
-        "http://localhost:5000/api/v1/patients/validate",
-        { ccc_no }
-      );
+      const { data } = await fetcher.post("/patients/validate", { ccc_no });
       setFoundUser(data.user);
       setLoading(false);
     } catch (error) {
@@ -52,18 +49,15 @@ function Register() {
 
     setLoading(true);
     try {
-      const { data } = await axios.post(
-        "http://localhost:5000/api/v1/patients/register",
-        {
-          full_name: foundUser.full_name,
-          facility: foundUser.facility,
-          id_no: foundUser.id_no,
-          phone,
-          ccc_no,
-          password,
-          photoUrl: generateAvatar(foundUser.full_name),
-        }
-      );
+      const { data } = await fetcher.post("/patients/register", {
+        full_name: foundUser.full_name,
+        facility: foundUser.facility,
+        id_no: foundUser.id_no,
+        phone,
+        ccc_no,
+        password,
+        photoUrl: generateAvatar(foundUser.full_name),
+      });
       setLoading(false);
       setIdmodal(false);
       setFoundUser(null);

@@ -6,7 +6,7 @@ import { Modal } from "@mui/material";
 import ConfirmDelivery from "./ConfirmDelivery";
 import { setOrders, setSelectedOrder } from "../redux/features/OrderSlice";
 import { toast } from "react-hot-toast";
-import axios from "axios";
+import { fetcher } from "../../lib/axios";
 
 function Orders() {
   const [loading, setLoading] = useState(true);
@@ -17,9 +17,7 @@ function Orders() {
   useEffect(() => {
     (async () => {
       try {
-        const { data } = await axios.get(
-          "http://localhost:5000/api/v1/orders/patient/" + user.phone
-        );
+        const { data } = await fetcher.get("/orders/patient/" + user.phone);
         dispatch(setOrders(data.orders));
         setLoading(false);
       } catch (error) {

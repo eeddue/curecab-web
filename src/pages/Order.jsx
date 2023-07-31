@@ -8,6 +8,7 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { updateOrders } from "../redux/features/OrderSlice";
 import { setUser } from "../redux/features/AuthSlice";
+import { fetcher } from "../../lib/axios";
 
 function Order() {
   const [couriers, setCouriers] = useState([]);
@@ -27,8 +28,8 @@ function Order() {
   useEffect(() => {
     (async () => {
       const response = await Promise.all([
-        axios.get("http://localhost:5000/api/v1/couriers"),
-        axios.get("http://localhost:5000/api/v1/facilities"),
+        fetcher.get("/couriers"),
+        fetcher.get("/facilities"),
       ]);
       setCouriers(response[0].data.couriers);
       setFacilities(response[1].data.facilities);
@@ -45,21 +46,18 @@ function Order() {
 
     setLoading(true);
     try {
-      const { data } = await axios.post(
-        "http://localhost:5000/api/v1/orders/make",
-        {
-          client: user.phone,
-          orderId: generateOrderId(),
-          address,
-          courier,
-          deliverBy,
-          userId: user._id,
-          span,
-          facility,
-          photoUrl: user.photoUrl,
-          next_order: getUserNextOrderDate(parseInt(span)),
-        }
-      );
+      const { data } = await fetcher.post("/orders/make", {
+        client: user.phone,
+        orderId: generateOrderId(),
+        address,
+        courier,
+        deliverBy,
+        userId: user._id,
+        span,
+        facility,
+        photoUrl: user.photoUrl,
+        next_order: getUserNextOrderDate(parseInt(span)),
+      });
 
       dispatch(updateOrders(data.order));
       dispatch(setUser(data.user));

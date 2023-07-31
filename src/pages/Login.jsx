@@ -1,14 +1,12 @@
 import { useState } from "react";
-import { AiOutlineUser } from "react-icons/ai";
 import { FiLock } from "react-icons/fi";
 import { CgSpinnerTwoAlt } from "react-icons/cg";
-import axios from "axios";
 import { Link } from "react-router-dom";
 import { toast } from "react-hot-toast";
-import { patients } from "../../data";
 import { useDispatch } from "react-redux";
 import { setUser } from "../redux/features/AuthSlice";
 import PhoneInput from "react-phone-number-input";
+import { fetcher } from "../../lib/axios";
 
 function Login() {
   const [phone, setPhone] = useState("");
@@ -25,10 +23,10 @@ function Login() {
 
     setLoading(true);
     try {
-      const { data } = await axios.post(
-        "http://localhost:5000/api/v1/patients/login",
-        { phone, password }
-      );
+      const { data } = await fetcher.post("/patients/login", {
+        phone,
+        password,
+      });
       setLoading(false);
       dispatch(setUser(data.user));
       return toast.success(data.msg);

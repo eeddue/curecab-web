@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CgSpinnerTwoAlt } from "react-icons/cg";
-import axios from "axios";
 import { toast } from "react-hot-toast";
 import PhoneInput from "react-phone-number-input";
+import { fetcher } from "../../lib/axios";
 
 function Forgot() {
   const [phone, setPhone] = useState("");
@@ -17,10 +17,10 @@ function Forgot() {
 
     setLoading(true);
     try {
-      const { data } = await axios.post(
-        "http://localhost:5000/api/v1/patients/forgot-password",
-        { phone, ccc_no }
-      );
+      const { data } = await fetcher.post("/patients/forgot-password", {
+        phone,
+        ccc_no,
+      });
       toast.success(data.msg);
       setLoading(false);
       return navigate("/login");
